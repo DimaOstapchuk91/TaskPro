@@ -1,0 +1,14 @@
+:root {
+  --color-brand: #bedbb0;
+  --color-brand-hover: #9dc888;
+  --color-background: #232323;
+  --color-white: #ffffff;
+  --color-background-dark: #1f1f1f;
+  --color-text-gray: rgba(255, 255, 255, 0.3);
+
+  --color-label-violet: #8fa1d0;
+  --color-label-pink: #e09cb5;
+  --color-label-grean: #bedbb0;
+
+  --error-color: #ef2447;
+}
