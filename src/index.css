@@ -6,8 +6,9 @@
   --breakpoint-2xl: 1280px;
   --color-bg: var(--color-background);
   --color-bg-dark: var(--color-background-dark);
-  --color-hover: var(--color-hover);
+  --color-hover: var(--color-brand-hover);
   --color-white: var(--color-white);
+  --color-text-dark: var(--color-text-dark);
   --color-label-gray: var(--color-lable-gray);
   --color-label-violet: var(--color-label-violet);
   --color-label-pink: var(--color-label-pink);
