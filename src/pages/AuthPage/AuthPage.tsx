@@ -11,11 +11,11 @@ const AuthPage: React.FC = () => {
   };
 
   return (
-    <div>
-      <div className='w-full max-w-md p-6  rounded-lg shadow-lg'>
+    <section className='container flex justify-center items-center min-h-screen w-full  bg-[linear-gradient(180deg,#ffffff_30%,#BEDBB0_70%)]'>
+      <div className='w-full flex justify-center'>
         {id && forms[id] ? forms[id] : <Navigate to='*' replace />}
       </div>
-    </div>
+    </section>
   );
 };
 export default AuthPage;
