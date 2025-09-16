@@ -26,7 +26,7 @@ const LoginForm = () => {
   };
   return (
     <form
-      className='bg-bg p-6 rounded-lg max-w-[335px] w-full '
+      className='bg-bg p-6 rounded-lg max-w-[335px] w-full md:p-10 md:max-w-[424px]'
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className='flex gap-3.5 mb-10'>
@@ -40,9 +40,9 @@ const LoginForm = () => {
       </div>
       <ul className='flex flex-col gap-3.5 mb-6 w-full'>
         <li>
-          <label>
+          <label className='relative block'>
             <input
-              className={`px-4.5 py-3.5 bg-bg-dark border rounded-lg opacity-40 outline-none text-white text-sm -tracking-[0.28px] w-full max-w-[287px] ${
+              className={`px-4.5 py-3.5 bg-bg-dark border rounded-lg opacity-40 outline-none text-white text-sm -tracking-[0.28px] w-full  ${
                 errors.email ? 'border-error' : 'border-label-green'
               } hover:opacity-100 focus:opacity-100 transition-all duration-300`}
               type='email'
@@ -50,7 +50,7 @@ const LoginForm = () => {
               {...register('email')}
             />
             {errors.email && (
-              <p className='absolute -top-[12px] right-0 text-error text-[10px] ml-3 font-medium leading-3 -tracking-[0.3px] md:text-sm md:leading-3.5 md:-tracking-[0.36px]'>
+              <p className='absolute -top-[12px] right-0 text-error text-[10px] ml-3 font-medium leading-3 -tracking-[0.3px] opacity-40'>
                 {errors.email.message}
               </p>
             )}
@@ -59,7 +59,7 @@ const LoginForm = () => {
         <li>
           <label className='relative block'>
             <input
-              className={`px-4.5 py-3.5 bg-bg-dark border rounded-lg opacity-40 outline-none text-white text-sm -tracking-[0.28px] w-full max-w-[287px] ${
+              className={`px-4.5 py-3.5 bg-bg-dark border rounded-lg opacity-40 outline-none text-white text-sm -tracking-[0.28px] w-full ${
                 errors.password ? 'border-error' : 'border-label-green'
               } hover:opacity-100 focus:opacity-100 transition-all duration-300`}
               type={passwordVisible ? 'text' : 'password'}
@@ -67,7 +67,7 @@ const LoginForm = () => {
               {...register('password')}
             />
             {errors.password && (
-              <p className='absolute -top-[12px] right-0 text-error text-[10px] ml-3 font-medium leading-3 -tracking-[0.3px] md:text-sm md:leading-3.5 md:-tracking-[0.36px]'>
+              <p className='absolute -top-[12px] right-0 text-error text-[10px] ml-3 font-medium leading-3 -tracking-[0.3px] opacity-40'>
                 {errors.password.message}
               </p>
             )}

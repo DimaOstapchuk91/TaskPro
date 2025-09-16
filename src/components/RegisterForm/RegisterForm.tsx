@@ -34,7 +34,7 @@ const RegisterForm = () => {
 
   return (
     <form
-      className='bg-bg p-6 rounded-lg max-w-[335px] w-full '
+      className='bg-bg p-6 rounded-lg max-w-[335px] w-full md:p-10 md:max-w-[424px]'
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className='flex gap-3.5 mb-10'>
@@ -50,7 +50,7 @@ const RegisterForm = () => {
         <li>
           <label className='relative block'>
             <input
-              className={`px-4.5 py-3.5 bg-bg-dark border rounded-lg opacity-40 outline-none text-white text-sm -tracking-[0.28px] w-full max-w-[287px] ${
+              className={`px-4.5 py-3.5 bg-bg-dark border rounded-lg opacity-40 outline-none text-white text-sm -tracking-[0.28px] w-full  ${
                 errors.name ? 'border-error' : 'border-label-green'
               } hover:opacity-100 focus:opacity-100 transition-all duration-300`}
               type='text'
@@ -58,7 +58,7 @@ const RegisterForm = () => {
               {...register('name')}
             />
             {errors.name && (
-              <p className='absolute -top-[12px] right-0 text-error text-[10px] ml-3 font-medium leading-3 -tracking-[0.3px] md:text-sm md:leading-3.5 md:-tracking-[0.36px]'>
+              <p className='absolute -top-[12px] right-0 text-error text-[10px] ml-3 font-medium leading-3 -tracking-[0.3px] opacity-40'>
                 {errors.name.message}
               </p>
             )}
@@ -67,7 +67,7 @@ const RegisterForm = () => {
         <li>
           <label className='relative block'>
             <input
-              className={`px-4.5 py-3.5 bg-bg-dark border rounded-lg opacity-40 outline-none text-white text-sm -tracking-[0.28px] w-full max-w-[287px] ${
+              className={`px-4.5 py-3.5 bg-bg-dark border rounded-lg opacity-40 outline-none text-white text-sm -tracking-[0.28px] w-full ${
                 errors.email ? 'border-error' : 'border-label-green'
               } hover:opacity-100 focus:opacity-100 transition-all duration-300`}
               type='email'
@@ -75,7 +75,7 @@ const RegisterForm = () => {
               {...register('email')}
             />
             {errors.email && (
-              <p className='absolute -top-[12px] right-0 text-error text-[10px] ml-3 font-medium leading-3 -tracking-[0.3px] md:text-sm md:leading-3.5 md:-tracking-[0.36px]'>
+              <p className='absolute -top-[12px] right-0 text-error text-[10px] ml-3 font-medium leading-3 -tracking-[0.3px] opacity-40'>
                 {errors.email.message}
               </p>
             )}
@@ -84,7 +84,7 @@ const RegisterForm = () => {
         <li>
           <label className='relative block'>
             <input
-              className={`px-4.5 py-3.5 bg-bg-dark border rounded-lg opacity-40 outline-none text-white text-sm -tracking-[0.28px] w-full max-w-[287px] ${
+              className={`px-4.5 py-3.5 bg-bg-dark border rounded-lg opacity-40 outline-none text-white text-sm -tracking-[0.28px] w-full ${
                 errors.password ? 'border-error' : 'border-label-green'
               } hover:opacity-100 focus:opacity-100 transition-all duration-300`}
               type={passwordVisible ? 'text' : 'password'}
@@ -92,7 +92,7 @@ const RegisterForm = () => {
               {...register('password')}
             />
             {errors.password && (
-              <p className='absolute -top-[12px] right-0 text-error text-[10px] ml-3 font-medium leading-3 -tracking-[0.3px] md:text-sm md:leading-3.5 md:-tracking-[0.36px]'>
+              <p className='absolute -top-[12px] right-0 text-error text-[10px] ml-3 font-medium leading-3 -tracking-[0.3px] opacity-40'>
                 {errors.password.message}
               </p>
             )}
@@ -130,7 +130,7 @@ const RegisterForm = () => {
         <li>
           <label className='relative block'>
             <input
-              className={`px-4.5 py-3.5 bg-bg-dark border rounded-lg opacity-40 outline-none text-white text-sm -tracking-[0.28px] w-full max-w-[287px]  transition-all duration-300 ${
+              className={`px-4.5 py-3.5 bg-bg-dark border rounded-lg opacity-40 outline-none text-white text-sm -tracking-[0.28px] w-full transition-all duration-300 ${
                 errors.confirmPassword ? 'border-error' : 'border-label-green  '
               } hover:opacity-100 focus:opacity-100`}
               type={repeatPasswordVisible ? 'text' : 'password'}
@@ -138,13 +138,13 @@ const RegisterForm = () => {
               {...register('confirmPassword')}
             />
             {errors.confirmPassword && (
-              <p className='absolute -top-[12px] right-0 text-error text-[10px] ml-3 font-medium leading-3 -tracking-[0.3px] md:text-sm md:leading-3.5 md:-tracking-[0.36px]'>
+              <p className='absolute -top-[12px] right-0 text-error text-[10px] ml-3 font-medium leading-3 -tracking-[0.3px] opacity-40'>
                 {errors.confirmPassword.message}
               </p>
             )}
             <button
               type='button'
-              className='group absolute top-3 transition-all duration-300 right-3 md:top-4 md:right-4 cursor-pointer opacity-40 hover:opacity-100 '
+              className='group absolute top-3.5 transition-all duration-300 right-4.5 cursor-pointer opacity-40 hover:opacity-100'
               tabIndex={-1}
               onMouseDown={e => e.preventDefault()}
               onClick={toggleRepeatPasswordVisibility}
