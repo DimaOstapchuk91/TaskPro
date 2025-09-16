@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import sprite from '../../assets/sprite.svg';
 
 interface LogoProps {
@@ -6,10 +7,9 @@ interface LogoProps {
 
 const Logo = ({ isHeading = false }: LogoProps) => {
   const content = (
-    <div className='flex items-center gap-3.5'>
+    <div className={`flex items-center ${isHeading ? 'gap-3.5' : 'gap-2'}`}>
       <svg
-        className=''
-        href='../../assets/img/brand_icon.svg'
+        className={`${isHeading ? 'w-10 h-10' : 'w-8 h-8'}`}
         width={40}
         height={40}
       >
@@ -23,7 +23,12 @@ const Logo = ({ isHeading = false }: LogoProps) => {
       {content}
     </h1>
   ) : (
-    <a href='/'>{content}</a>
+    <NavLink
+      className={'mb-17.5 block font-semibold -tracking-[0.64px]'}
+      to='/home'
+    >
+      {content}
+    </NavLink>
   );
 };
 export default Logo;

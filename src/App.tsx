@@ -9,10 +9,19 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path='/home' element={<HomePage />} />
+        <Route path='/home' element={<HomePage />}>
+          <Route
+            index
+            element={
+              <div>
+                <p>Компонент коли дошка не обрана</p>
+              </div>
+            }
+          />
+          <Route path=':boardId' element={<ScreensPage />} />
+        </Route>
         <Route path='/welcome' element={<WelcomePage />} />
         <Route path='/auth/:id' element={<AuthPage />} />
-        <Route path='/home/:boardId' element={<ScreensPage />} />
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
     </>

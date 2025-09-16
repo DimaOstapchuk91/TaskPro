@@ -1,4 +1,11 @@
+import { useParams } from 'react-router-dom';
+
 const ScreensPage = () => {
-  return <div>ScreensPage</div>;
+  const { boardId } = useParams();
+  return (
+    <div>
+      <p>Board Id: {boardId}</p>
+    </div>
+  );
 };
 export default ScreensPage;
