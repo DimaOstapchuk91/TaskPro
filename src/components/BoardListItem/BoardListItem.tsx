@@ -16,9 +16,9 @@ const BoardListItem = ({ board }: BoardListItemProps) => {
     <li className='relative'>
       <NavLink
         className={({ isActive }) =>
-          `group flex items-center gap-1 py-5 px-3.5 -mx-3.5 hover:bg-bg-dark transition-all duration-300  ${
+          `group flex items-center gap-1 py-5 px-3.5 -mx-3.5 hover:bg-bg-dark transition-all duration-300 md:gap-2 md:-mx-6  ${
             isActive
-              ? 'active bg-bg-dark  after:content-[""] after:absolute after:top-0 after:-right-3.5 after:w-1 after:h-full after:rounded-l after:bg-label-green'
+              ? 'active bg-bg-dark  after:content-[""] after:absolute after:top-0 after:-right-3.5 after:w-1 after:h-full after:rounded-l after:bg-label-green md:after:-right-6'
               : ''
           }`
         }
@@ -31,9 +31,11 @@ const BoardListItem = ({ board }: BoardListItemProps) => {
         >
           <use href={`${sprite}#${board.icon}`} />
         </svg>
-        <p className='opacity-40 group-[.active]:opacity-100'>{board.title}</p>
+        <p className='opacity-40 text-sm font-medium -tracking-[0.28px] group-[.active]:opacity-100'>
+          {board.title}
+        </p>
       </NavLink>
-      <div className='absolute top-1/2 -translate-y-1/2 right-3.5 flex gap-3 '>
+      <div className='absolute top-1/2 -translate-y-1/2 right-0 flex gap-2 '>
         <button
           className='opacity-40 hover:opacity-100  cursor-pointer transition-all duration-300'
           type='button'
