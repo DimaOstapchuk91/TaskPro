@@ -5,13 +5,15 @@ import Sidebar from '../../components/Sidebar/Sidebar';
 
 const HomePage = () => {
   return (
-    <div className='flex gap-10'>
-      <Sidebar />
-      <div className='flex flex-col'>
+    <section className='w-full flex'>
+      <div className='w-full hidden xl:flex'>
+        <Sidebar />
+      </div>
+      <div className='w-full flex flex-col'>
         <Header />
         <Outlet />
       </div>
-    </div>
+    </section>
   );
 };
 
