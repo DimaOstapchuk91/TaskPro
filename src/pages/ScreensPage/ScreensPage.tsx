@@ -6,9 +6,9 @@ import sprite from '../../assets/sprite.svg';
 const ScreensPage = () => {
   const { boardId } = useParams<string>();
   return (
-    <section className='w-full h-screen bg-bg-dark p-5 relative'>
+    <section className='w-full h-screen bg-bg-light p-5 relative'>
       <button
-        className='absolute top-5 right-5 flex items-center gap-1 stroke-white/80 text-white/80 hover:stroke-hover hover:text-hover '
+        className='absolute top-5 right-5 flex items-center gap-1 stroke-text-theme/80 text-text-theme/80 hover:stroke-hover hover:text-hover '
         type='button'
       >
         <svg width='16' height='16' className='fill-transparent'>

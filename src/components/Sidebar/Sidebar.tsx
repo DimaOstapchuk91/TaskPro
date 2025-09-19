@@ -20,10 +20,10 @@ const Sidebar = () => {
             Create a new board
           </p>
           <button
-            className='w-10 h-9 flex justify-center items-center bg-label-green rounded-[6px] hover:bg-hover'
+            className='w-10 h-9 flex justify-center items-center bg-brand rounded-[6px] hover:bg-hover'
             type='button'
           >
-            <svg width='20' height='20' className='stroke-bg'>
+            <svg width='20' height='20' className='stroke-text-dark'>
               <use href={`${sprite}#icon-plus`}></use>
             </svg>
           </button>

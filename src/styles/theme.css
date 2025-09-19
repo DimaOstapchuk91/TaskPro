@@ -1,12 +1,54 @@
 :root {
+  --color-background: #121212;
   --color-brand: #bedbb0;
   --color-brand-hover: #9dc888;
-  --color-background: #121212;
+  --color-text-dark: #161616;
   --color-white: #ffffff;
   --color-background-dark: #1f1f1f;
-  --color-lable-gray: rgba(255, 255, 255, 0.3);
-  --color-text-dark: #161616;
+  --color-bg-light: #1f1f1f;
+  --color-header: #161616;
+  --color-text-theme: #ffffff;
 
+  --color-lable-gray: rgba(255, 255, 255, 0.3);
+  --color-label-violet: #8fa1d0;
+  --color-label-pink: #e09cb5;
+  --color-label-grean: #bedbb0;
+
+  --error-color: #ef2447;
+}
+
+.light {
+  --color-background: #ffffff;
+  --color-brand: #bedbb0;
+  --color-brand-hover: #9dc888;
+  --color-white: #161616;
+  --color-background-dark: #f6f6f7;
+  --color-bg-light: #f6f6f7;
+  --color-header: #fcfcfc;
+  --color-text-dark: #ffffff;
+  --color-text-theme: #161616;
+
+  --color-lable-gray: rgba(255, 255, 255, 0.3);
+  --color-label-violet: #8fa1d0;
+  --color-label-pink: #e09cb5;
+  --color-label-grean: #bedbb0;
+
+  --error-color: #ef2447;
+}
+
+/* Violet theme */
+.violet {
+  --color-background: #5255bc;
+  --color-brand: #7b7ede;
+  --color-brand-hover: #b8bcfd;
+  --color-white: #ffffff;
+  --color-background-dark: rgba(236, 237, 253, 0.4);
+  --color-bg-light: #ecedfd;
+  --color-header: #ffffff;
+  --color-text-dark: #ffffff;
+  --color-text-theme: #161616;
+
+  --color-lable-gray: rgba(255, 255, 255, 0.3);
   --color-label-violet: #8fa1d0;
   --color-label-pink: #e09cb5;
   --color-label-grean: #bedbb0;

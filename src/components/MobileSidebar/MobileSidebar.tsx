@@ -25,20 +25,16 @@ const MobileSidebar = ({ isOpen, setIsOpen }: MobileSidebarProps) => {
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     setTouchStartX(e.touches[0].clientX);
-    console.log('Touch Start X:', e.touches[0].clientX);
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
     setTouchEndX(e.touches[0].clientX);
-    console.log('Touch Move X:', e.touches[0].clientX);
   };
 
   const handleTouchEnd = () => {
     if (touchStartX - touchEndX > swipeThreshold) {
       setIsOpen(false);
     }
-
-    console.log('Touch End X:', touchEndX);
   };
 
   return (

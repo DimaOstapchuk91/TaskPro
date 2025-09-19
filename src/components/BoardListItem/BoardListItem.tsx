@@ -20,14 +20,14 @@ const BoardListItem = ({ board }: BoardListItemProps) => {
         className={({ isActive }) =>
           `group flex items-center gap-1 py-5 px-3.5 -mx-3.5 hover:bg-bg-dark transition-all duration-300 md:gap-2 md:-mx-6  ${
             isActive
-              ? 'active bg-bg-dark  after:content-[""] after:absolute after:top-0 after:-right-3.5 after:w-1 after:h-full after:rounded-l after:bg-label-green md:after:-right-6'
+              ? 'active bg-bg-dark  after:content-[""] after:absolute after:top-0 after:-right-3.5 after:w-1 after:h-full after:rounded-l after:bg-brand md:after:-right-6'
               : ''
           }`
         }
         to={`/home/${board.id}`}
       >
         <svg
-          className='stroke-white opacity-40 group-[.active]:opacity-100'
+          className='stroke-white opacity-40 group-[.active]:opacity-100 fill-transparent'
           width={18}
           height={18}
         >
@@ -44,7 +44,7 @@ const BoardListItem = ({ board }: BoardListItemProps) => {
             type='button'
           >
             <svg
-              className='stroke-white hover:stroke-label-green hover:drop-shadow-[0_0_6px_var(--color-label-grean)] transition-all duration-300'
+              className='stroke-white fill-transparent hover:stroke-brand hover:drop-shadow-[0_0_6px_var(--color-brand)] transition-all duration-300'
               width={16}
               height={16}
             >
@@ -56,7 +56,7 @@ const BoardListItem = ({ board }: BoardListItemProps) => {
             type='button'
           >
             <svg
-              className='stroke-white fill-transparent hover:stroke-error hover:drop-shadow-[0_0_6px_var(--color-label-grean)]  transition-all duration-300'
+              className='stroke-white fill-transparent hover:stroke-error hover:drop-shadow-[0_0_6px_var(--color-error)]  transition-all duration-300'
               width={16}
               height={16}
             >
