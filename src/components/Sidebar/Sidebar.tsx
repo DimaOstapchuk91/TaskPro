@@ -48,7 +48,7 @@ const Sidebar = () => {
             support resources or reach out to our customer support team.
           </p>
           <button
-            className='flex !text-xs -tracking-[0.24px] stroke-white items-center gap-2 hover:text-hover hover:stroke-hover hover:drop-shadow-[0_0_6px_#BEDBB0]'
+            className='flex !text-xs -tracking-[0.24px] stroke-white items-center gap-2 hover:text-hover hover:stroke-hover '
             type='button'
           >
             <svg width='20' height='20' className='fill-transparent'>
@@ -58,7 +58,7 @@ const Sidebar = () => {
           </button>
         </div>
         <button
-          className='flex items-center ml-2.5 mb-2.5 !text-sm font-medium gap-3.5 stroke-label-green hover:text-hover hover:stroke-hover hover:drop-shadow-[0_0_6px_#BEDBB0] md:ml-0 md:mb-0'
+          className='flex items-center ml-2.5 mb-2.5 !text-sm font-medium gap-3.5 stroke-label-green hover:text-hover hover:stroke-hover md:ml-0 md:mb-0'
           type='button'
         >
           <svg width='32' height='32' className='fill-transparent'>

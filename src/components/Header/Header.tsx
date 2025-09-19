@@ -16,7 +16,7 @@ const Header = () => {
         <div className='flex items-center gap-2'>
           <p className='text-sm font-medium -tacking-[0.28px]'>User Name</p>
           <button
-            className='relative bg-bg-dark w-8 h-8 rounded-lg flex justify-center items-end'
+            className='relative bg-bg-dark w-8 h-8 rounded-lg flex justify-center items-end hover:shadow-[0_2px_6px_var(--color-label-grean)]'
             type='button'
           >
             <svg

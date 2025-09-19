@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useMatch } from 'react-router-dom';
 import sprite from '../../assets/sprite.svg';
 
 interface BoardTypes {
@@ -12,6 +12,8 @@ interface BoardListItemProps {
 }
 
 const BoardListItem = ({ board }: BoardListItemProps) => {
+  const match = useMatch(`/home/${board.id}`);
+
   return (
     <li className='relative'>
       <NavLink
@@ -35,32 +37,34 @@ const BoardListItem = ({ board }: BoardListItemProps) => {
           {board.title}
         </p>
       </NavLink>
-      <div className='absolute top-1/2 -translate-y-1/2 right-0 flex gap-2 '>
-        <button
-          className='opacity-40 hover:opacity-100  cursor-pointer transition-all duration-300'
-          type='button'
-        >
-          <svg
-            className='stroke-white hover:stroke-label-green hover:drop-shadow-[0_0_6px_#BEDBB0] transition-all duration-300'
-            width={16}
-            height={16}
+      {match && (
+        <div className='absolute top-1/2 -translate-y-1/2 right-0 flex gap-2 '>
+          <button
+            className='opacity-40 hover:opacity-100  cursor-pointer transition-all duration-300'
+            type='button'
           >
-            <use href={`${sprite}#icon-pencil`} />
-          </svg>
-        </button>
-        <button
-          className='opacity-40 hover:opacity-100 cursor-pointer transition-all duration-300'
-          type='button'
-        >
-          <svg
-            className='stroke-white fill-transparent hover:stroke-error hover:drop-shadow-[0_0_6px_#EF2447]  transition-all duration-300'
-            width={16}
-            height={16}
+            <svg
+              className='stroke-white hover:stroke-label-green hover:drop-shadow-[0_0_6px_var(--color-label-grean)] transition-all duration-300'
+              width={16}
+              height={16}
+            >
+              <use href={`${sprite}#icon-pencil`} />
+            </svg>
+          </button>
+          <button
+            className='opacity-40 hover:opacity-100 cursor-pointer transition-all duration-300'
+            type='button'
           >
-            <use href={`${sprite}#icon-trash`} />
-          </svg>
-        </button>
-      </div>
+            <svg
+              className='stroke-white fill-transparent hover:stroke-error hover:drop-shadow-[0_0_6px_var(--color-label-grean)]  transition-all duration-300'
+              width={16}
+              height={16}
+            >
+              <use href={`${sprite}#icon-trash`} />
+            </svg>
+          </button>
+        </div>
+      )}
     </li>
   );
 };

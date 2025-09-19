@@ -10,7 +10,7 @@ interface MobileSidebarProps {
 const MobileSidebar = ({ isOpen, setIsOpen }: MobileSidebarProps) => {
   const [touchStartX, setTouchStartX] = useState(0);
   const [touchEndX, setTouchEndX] = useState(0);
-  const swipeThreshold = 100;
+  const swipeThreshold = 150;
 
   useEffect(() => {
     if (isOpen) {
@@ -25,16 +25,20 @@ const MobileSidebar = ({ isOpen, setIsOpen }: MobileSidebarProps) => {
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     setTouchStartX(e.touches[0].clientX);
+    console.log('Touch Start X:', e.touches[0].clientX);
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
     setTouchEndX(e.touches[0].clientX);
+    console.log('Touch Move X:', e.touches[0].clientX);
   };
 
   const handleTouchEnd = () => {
     if (touchStartX - touchEndX > swipeThreshold) {
       setIsOpen(false);
     }
+
+    console.log('Touch End X:', touchEndX);
   };
 
   return (
@@ -45,13 +49,13 @@ const MobileSidebar = ({ isOpen, setIsOpen }: MobileSidebarProps) => {
         </svg>
       </button>
       <div
-        className={`fixed inset-0 transition-opacity duration-300 ${
+        className={`fixed z-20 inset-0 left-[225px] transition-opacity duration-300 md:left-[260px] ${
           isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
         }`}
         onClick={() => setIsOpen(false)}
       />
       <div
-        className={`fixed inset-y-0 left-0 transform transition-transform duration-300 ${
+        className={`fixed inset-y-0 left-0 transform z-10 transition-transform duration-300 ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
         onTouchStart={handleTouchStart}
