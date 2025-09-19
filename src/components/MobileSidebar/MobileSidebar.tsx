@@ -10,7 +10,7 @@ interface MobileSidebarProps {
 const MobileSidebar = ({ isOpen, setIsOpen }: MobileSidebarProps) => {
   const [touchStartX, setTouchStartX] = useState(0);
   const [touchEndX, setTouchEndX] = useState(0);
-  const swipeThreshold = 50;
+  const swipeThreshold = 100;
 
   useEffect(() => {
     if (isOpen) {
@@ -45,7 +45,7 @@ const MobileSidebar = ({ isOpen, setIsOpen }: MobileSidebarProps) => {
         </svg>
       </button>
       <div
-        className={`fixed inset-0 bg-black/30 transition-opacity duration-300 ${
+        className={`fixed inset-0 transition-opacity duration-300 ${
           isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
         }`}
         onClick={() => setIsOpen(false)}

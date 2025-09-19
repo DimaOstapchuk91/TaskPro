@@ -10,14 +10,7 @@ function App() {
     <>
       <Routes>
         <Route path='/home' element={<HomePage />}>
-          <Route
-            index
-            element={
-              <div>
-                <p>Компонент коли дошка не обрана</p>
-              </div>
-            }
-          />
+          <Route index element={<ScreensPage />} />
           <Route path=':boardId' element={<ScreensPage />} />
         </Route>
         <Route path='/welcome' element={<WelcomePage />} />
