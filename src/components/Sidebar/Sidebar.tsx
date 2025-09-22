@@ -2,6 +2,7 @@ import Logo from '../Logo/Logo';
 import sprite from '../../assets/sprite.svg';
 import BoardList from '../BoardList/BoardList';
 import flowerpot from '../../assets/img/flowerpot.png';
+import AddBoardBtn from '../AddBoardBtn/AddBoardBtn';
 
 const Sidebar = () => {
   const mokedBoards = [
@@ -15,19 +16,7 @@ const Sidebar = () => {
       <div>
         <Logo />
         <p className='text-xs mb-2 -tracking-[0.24px] opacity-50'>My boards</p>
-        <div className='flex py-3.5 mb-10 justify-between w-full border-y border-white/10 '>
-          <p className='max-w-[76px] text-sm font-medium -tracking-[0.28px]'>
-            Create a new board
-          </p>
-          <button
-            className='w-10 h-9 flex justify-center items-center bg-brand rounded-[6px] hover:bg-hover'
-            type='button'
-          >
-            <svg width='20' height='20' className='stroke-text-dark'>
-              <use href={`${sprite}#icon-plus`}></use>
-            </svg>
-          </button>
-        </div>
+        <AddBoardBtn />
         <nav>
           <BoardList mokedBoards={mokedBoards} />
         </nav>

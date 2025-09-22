@@ -1,5 +1,8 @@
 import { NavLink, useMatch } from 'react-router-dom';
 import sprite from '../../assets/sprite.svg';
+import { useState } from 'react';
+import Modal from '../modals/Modal';
+import BoardModal from '../modals/BoardModal/BoardModal';
 
 interface BoardTypes {
   id: string;
@@ -13,6 +16,16 @@ interface BoardListItemProps {
 
 const BoardListItem = ({ board }: BoardListItemProps) => {
   const match = useMatch(`/home/${board.id}`);
+
+  const [isOpenEditModal, setIsOpenEditModal] = useState<boolean>(false);
+
+  const handleOpenEditModal = () => {
+    setIsOpenEditModal(true);
+  };
+
+  const handleCloseEditModal = () => {
+    setIsOpenEditModal(false);
+  };
 
   return (
     <li className='relative'>
@@ -42,6 +55,7 @@ const BoardListItem = ({ board }: BoardListItemProps) => {
           <button
             className='opacity-40 hover:opacity-100  cursor-pointer transition-all duration-300'
             type='button'
+            onClick={handleOpenEditModal}
           >
             <svg
               className='stroke-white fill-transparent hover:stroke-brand hover:drop-shadow-[0_0_6px_var(--color-brand)] transition-all duration-300'
@@ -65,6 +79,9 @@ const BoardListItem = ({ board }: BoardListItemProps) => {
           </button>
         </div>
       )}
+      <Modal isOpen={isOpenEditModal} onClose={handleCloseEditModal}>
+        <BoardModal onClose={handleCloseEditModal} mode={'edit'} />
+      </Modal>
     </li>
   );
 };
