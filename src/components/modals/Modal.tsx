@@ -43,13 +43,13 @@ const Modal = ({ isOpen, onClose, children }: ModalProps) => {
         onClick={e => e.stopPropagation()}
       >
         <button
-          className='absolute group top-5 right-5 cursor-pointer hover'
+          className='absolute group top-3.5 right-3.5 cursor-pointer'
           onClick={onClose}
         >
           <svg
-            className='stroke-text-dark group-hover:stroke-hover transition-all duration-200'
-            width={24}
-            height={24}
+            className='stroke-text-theme group-hover:stroke-hover transition-all duration-200'
+            width={18}
+            height={18}
           >
             <use href={`${sprite}#icon-close`} />
           </svg>

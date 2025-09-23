@@ -10,18 +10,20 @@ import {
   REGISTER,
   Persistor,
 } from 'redux-persist';
-import { api } from './api/api';
+import { taskProApi } from './api/authApi';
+import { resourcesApi } from './api/resourcesApi';
 
 export const store = configureStore({
   reducer: {
-    [api.reducerPath]: api.reducer,
+    [taskProApi.reducerPath]: taskProApi.reducer,
+    [resourcesApi.reducerPath]: resourcesApi.reducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware<{ serializableCheck: { ignoredActions: string[] } }>({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
+    }).concat(taskProApi.middleware, resourcesApi.middleware),
 });
 
 export const persistor: Persistor = persistStore(store);

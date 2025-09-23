@@ -14,7 +14,7 @@ const BoardContent = ({ id }: BoardContentProps) => {
         className='group flex items-center justify-center gap-2 w-full max-w-[335px] p-3.5 bg-header rounded-lg'
         type='button'
       >
-        <span className='flex justify-center items-center rounded-lg w-7 h-7 bg-brand group-hover:bg-hover transition duration-300'>
+        <span className='flex justify-center items-center rounded w-7 h-7 bg-brand group-hover:bg-hover transition duration-300'>
           <svg
             width='14'
             height='14'

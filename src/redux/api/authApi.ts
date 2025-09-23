@@ -6,22 +6,22 @@ export interface User {
   email: string;
 }
 
-export const api = createApi({
-  reducerPath: 'api',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https:///api/' }),
+export const taskProApi = createApi({
+  reducerPath: 'taskProApi',
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3000/' }),
   tagTypes: ['User'],
   endpoints: builder => ({
     getUsers: builder.query<User[], void>({
-      query: () => 'users',
+      query: () => 'auth',
       providesTags: ['User'],
     }),
     getUserById: builder.query<User, number>({
-      query: id => `users/${id}`,
+      query: id => `auth/${id}`,
       providesTags: (result, error, id) => [{ type: 'User', id }],
     }),
     addUser: builder.mutation<User, Partial<User>>({
       query: body => ({
-        url: 'users',
+        url: 'auth',
         method: 'POST',
         body,
       }),
@@ -31,4 +31,4 @@ export const api = createApi({
 });
 
 export const { useGetUsersQuery, useGetUserByIdQuery, useAddUserMutation } =
-  api;
+  taskProApi;
