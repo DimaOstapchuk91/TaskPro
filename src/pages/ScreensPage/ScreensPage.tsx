@@ -6,7 +6,7 @@ import sprite from '../../assets/sprite.svg';
 const ScreensPage = () => {
   const { boardId } = useParams<string>();
   return (
-    <section className='w-full h-screen bg-bg-light p-5 relative'>
+    <section className='w-full h-full bg-bg-light relative p-5'>
       <button
         className='absolute top-5 right-5 flex items-center gap-1 stroke-text-theme/80 text-text-theme/80 hover:stroke-hover hover:text-hover '
         type='button'
