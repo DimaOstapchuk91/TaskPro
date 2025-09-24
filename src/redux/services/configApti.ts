@@ -1,0 +1,78 @@
+import { fetchBaseQuery } from '@reduxjs/toolkit/query';
+import { RootState } from '../store';
+import type {
+  BaseQueryFn,
+  FetchArgs,
+  FetchBaseQueryError,
+} from '@reduxjs/toolkit/query';
+import { loggedOut, tokenReceived } from '../slices/userSlice';
+
+import { Mutex } from 'async-mutex';
+
+const mutex = new Mutex();
+
+const baseQuery = fetchBaseQuery({
+  baseUrl: 'http://localhost:3000/',
+  prepareHeaders: (headers, { getState }) => {
+    const token = (getState() as RootState).user.accessToken;
+    if (token) {
+      headers.set('Authorization', `Bearer ${token}`);
+    }
+    return headers;
+  },
+  credentials: 'include',
+});
+
+export const baseQueryWithReauth: BaseQueryFn<
+  string | FetchArgs,
+  unknown,
+  FetchBaseQueryError
+> = async (args, api, extraOptions) => {
+  await mutex.waitForUnlock();
+
+  let result = await baseQuery(args, api, extraOptions);
+
+  if (result.error && result.error.status === 401) {
+    if (!mutex.isLocked()) {
+      const release = await mutex.acquire();
+      try {
+        const refreshResult = await baseQuery(
+          'auth/refresh',
+          api,
+          extraOptions
+        );
+
+        if (
+          refreshResult.data &&
+          typeof refreshResult.data === 'object' &&
+          'accessToken' in refreshResult.data
+        ) {
+          // store the new token
+          api.dispatch(
+            tokenReceived(refreshResult.data as { accessToken: string })
+          );
+
+          // retry the initial query
+          result = await baseQuery(args, api, extraOptions);
+        } else {
+          api.dispatch(loggedOut());
+        }
+      } finally {
+        release();
+      }
+    } else {
+      await mutex.waitForUnlock();
+      result = await baseQuery(args, api, extraOptions);
+    }
+  }
+
+  if (result.error && result.error.status === 500) {
+    let retries = 0;
+    while (retries < 3 && result.error) {
+      retries++;
+      result = await baseQuery(args, api, extraOptions);
+    }
+  }
+
+  return result;
+};

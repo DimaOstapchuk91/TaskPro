@@ -1,4 +1,5 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi } from '@reduxjs/toolkit/query/react';
+import { baseQueryWithReauth } from '../services/configApti';
 
 export interface User {
   id: number;
@@ -8,18 +9,14 @@ export interface User {
 
 export const taskProApi = createApi({
   reducerPath: 'taskProApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3000/' }),
+  baseQuery: baseQueryWithReauth,
   tagTypes: ['User'],
   endpoints: builder => ({
-    getUsers: builder.query<User[], void>({
-      query: () => 'auth',
-      providesTags: ['User'],
-    }),
     getUserById: builder.query<User, number>({
       query: id => `auth/${id}`,
       providesTags: (result, error, id) => [{ type: 'User', id }],
     }),
-    addUser: builder.mutation<User, Partial<User>>({
+    registerUser: builder.mutation<User, Partial<User>>({
       query: body => ({
         url: 'auth',
         method: 'POST',
@@ -27,8 +24,18 @@ export const taskProApi = createApi({
       }),
       invalidatesTags: ['User'],
     }),
+    loginUser: builder.query<User, Partial<User>>({
+      query: body => ({
+        url: 'auth',
+        method: 'POST',
+        body,
+      }),
+    }),
   }),
 });
 
-export const { useGetUsersQuery, useGetUserByIdQuery, useAddUserMutation } =
-  taskProApi;
+export const {
+  useGetUserByIdQuery,
+  useRegisterUserMutation,
+  useLoginUserQuery,
+} = taskProApi;

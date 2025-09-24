@@ -15,11 +15,13 @@ interface BoardFormValues {
 }
 
 const BoardModal = ({ onClose, mode }: BoardModalProps) => {
-  const { data, isLoading } = useGetResourcesQuery();
+  const { data } = useGetResourcesQuery();
   const title = mode === 'create' ? 'New board' : 'Edit board';
   const buttonLabel = mode === 'create' ? 'Create' : 'Edit';
 
   // console.log(isLoading);
+
+  const isLoading = true;
 
   const icons = [
     'icon-star',

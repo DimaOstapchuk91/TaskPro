@@ -1,7 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-
+import storage from 'redux-persist/lib/storage';
 import {
   persistStore,
+  persistReducer,
   FLUSH,
   REHYDRATE,
   PAUSE,
@@ -12,9 +13,19 @@ import {
 } from 'redux-persist';
 import { taskProApi } from './api/authApi';
 import { resourcesApi } from './api/resourcesApi';
+import { authReducer } from './slices/userSlice';
+
+const persistUserConfig = {
+  key: 'userData',
+  storage,
+  whitelist: ['accessToken', 'theme'],
+};
+
+const persistUserReducer = persistReducer(persistUserConfig, authReducer);
 
 export const store = configureStore({
   reducer: {
+    user: persistUserReducer,
     [taskProApi.reducerPath]: taskProApi.reducer,
     [resourcesApi.reducerPath]: resourcesApi.reducer,
   },
