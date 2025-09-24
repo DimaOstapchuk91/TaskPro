@@ -1,6 +1,5 @@
 @import 'modern-normalize';
 @import 'tailwindcss';
-/* @import './styles/theme.css'; */
 
 @theme inline {
   --font-display: 'Poppins', 'sans-serif';

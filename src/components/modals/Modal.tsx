@@ -35,11 +35,11 @@ const Modal = ({ isOpen, onClose, children }: ModalProps) => {
 
   return createPortal(
     <div
-      className='fixed top-0 left-0 w-screen h-screen bg-text-gray flex justify-center items-center z-50'
+      className='fixed top-0 left-0 w-screen h-screen bg-brand/10 flex justify-center items-center z-50'
       onClick={onClose}
     >
       <div
-        className='relative w-max overflow-hidden'
+        className='relative w-full max-w-[335px] md:max-w-[350px] overflow-hidden'
         onClick={e => e.stopPropagation()}
       >
         <button
