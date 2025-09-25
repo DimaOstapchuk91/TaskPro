@@ -40,9 +40,36 @@ export const orderLoginSchema = Yup.object({
   password: passwordValid,
 });
 
+export type LoginFormValues = Yup.InferType<typeof orderLoginSchema>;
+
 export const orderEditUserSchema = Yup.object({
   name: nameValid,
   email: emailValid,
   avatar: avatarValid,
   theme: themeValid,
 });
+
+export const orderBoardSchema = Yup.object({
+  boardTitle: Yup.string()
+    .required('Task name is required')
+    .min(2, 'Minimum 2 symbols')
+    .max(50, 'Maximum 50 symbols'),
+  boardIcon: Yup.string()
+    .required('Icon is required')
+    .oneOf(
+      [
+        'icon-star',
+        'icon-container',
+        'icon-puzzle',
+        'icon-project',
+        'icon-colors',
+        'icon-hexagon',
+        'icon-lightning',
+        'icon-loading',
+      ],
+      'Invalid icon selection'
+    ),
+  boardBg: Yup.string().nullable(),
+});
+
+export type BoardFormValues = Yup.InferType<typeof orderBoardSchema>;

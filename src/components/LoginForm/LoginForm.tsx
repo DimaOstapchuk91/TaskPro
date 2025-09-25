@@ -1,6 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { NavLink } from 'react-router-dom';
-import { orderLoginSchema } from '../../utils/formValidation';
+import { LoginFormValues, orderLoginSchema } from '../../utils/formValidation';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import sprite from '../../assets/sprite.svg';
@@ -12,12 +12,12 @@ const LoginForm = () => {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm({
+  } = useForm<LoginFormValues>({
     resolver: yupResolver(orderLoginSchema),
     mode: 'onChange',
   });
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: LoginFormValues) => {
     console.log(data);
   };
 

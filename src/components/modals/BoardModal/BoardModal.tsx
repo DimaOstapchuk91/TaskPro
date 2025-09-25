@@ -1,27 +1,24 @@
-import { useForm } from 'react-hook-form';
+import { Resolver, useForm } from 'react-hook-form';
 import sprite from '../../../assets/sprite.svg';
 import { useGetResourcesQuery } from '../../../redux/api/resourcesApi';
 import Loader from '../../Loader/Loader';
+import {
+  BoardFormValues,
+  orderBoardSchema,
+} from '../../../utils/formValidation';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 interface BoardModalProps {
   onClose: () => void;
   mode: 'create' | 'edit';
 }
 
-interface BoardFormValues {
-  boardTitle: string;
-  boardIcon: string;
-  boardBg: string;
-}
-
 const BoardModal = ({ onClose, mode }: BoardModalProps) => {
-  const { data } = useGetResourcesQuery();
+  const { data, isLoading } = useGetResourcesQuery();
   const title = mode === 'create' ? 'New board' : 'Edit board';
   const buttonLabel = mode === 'create' ? 'Create' : 'Edit';
 
   // console.log(isLoading);
-
-  const isLoading = true;
 
   const icons = [
     'icon-star',
@@ -39,8 +36,10 @@ const BoardModal = ({ onClose, mode }: BoardModalProps) => {
     register,
     formState: { errors },
   } = useForm<BoardFormValues>({
-    // resolver: yupResolver(),
-    mode: 'onChange',
+    resolver: yupResolver(
+      orderBoardSchema
+    ) as unknown as Resolver<BoardFormValues>,
+    mode: 'onSubmit',
   });
 
   const onSubmit = (result: BoardFormValues): void => {
@@ -65,19 +64,24 @@ const BoardModal = ({ onClose, mode }: BoardModalProps) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <ul>
           <li className='mb-6'>
-            <label>
+            <label className='relative block'>
               <input
                 className='px-4.5 py-3.5 text-sm text-text-theme -tracking-[0.28px] border border-brand rounded-lg w-full outline-none hover:border-hover hover:shadow-[0_0_8px_var(--color-brand)] focus:border-hover focus:shadow-[0_0_8px_var(--color-brand)] transition-all duration-300'
                 type='text'
                 {...register('boardTitle')}
               />
+              {errors.boardTitle && (
+                <p className='absolute -top-4 right-0 text-error text-[10px] ml-3 font-medium leading-3 -tracking-[0.3px] opacity-40'>
+                  {errors.boardTitle.message}
+                </p>
+              )}
             </label>
           </li>
           <li>
             <p className='text-text-theme text-sm font-medium -tracking-[0.28px] mb-3.5'>
               Icons
             </p>
-            <ul className='flex flex-wrap gap-2 mb-6'>
+            <ul className='flex flex-wrap gap-2 mb-6 relative'>
               {icons.map(icon => (
                 <li key={icon}>
                   <label className='cursor-pointer group '>
@@ -99,6 +103,11 @@ const BoardModal = ({ onClose, mode }: BoardModalProps) => {
                   </label>
                 </li>
               ))}
+              {errors.boardIcon && (
+                <p className='absolute -top-7 right-0 text-error text-[10px] ml-3 font-medium leading-3 -tracking-[0.3px] opacity-40'>
+                  {errors.boardIcon.message}
+                </p>
+              )}
             </ul>
           </li>
           <li>
@@ -111,6 +120,25 @@ const BoardModal = ({ onClose, mode }: BoardModalProps) => {
               </div>
             ) : (
               <ul className='flex flex-wrap gap-1 mb-10'>
+                <li>
+                  <label>
+                    <input
+                      type='radio'
+                      value=''
+                      {...register('boardBg')}
+                      className='hidden peer'
+                    />
+                    <span className='flex justify-center bg-brand/20 items-center w-7 h-7 peer-checked:shadow-[0_0_8px_var(--color-brand)] peer-checked:stroke-hover ring-brand rounded-lg  stroke-text-theme/20 cursor-pointer'>
+                      <svg
+                        width='18'
+                        height='18'
+                        className=' fill-transparent group-hover:stroke-hover hover:drop-shadow-[0_0_6px_var(--color-brand)]  transition-all duration-300'
+                      >
+                        <use href={`${sprite}#icon-image`} />
+                      </svg>
+                    </span>
+                  </label>
+                </li>
                 {data?.data?.map(icons => (
                   <li key={icons.thumb?.id}>
                     <label className='cursor-pointer group'>
