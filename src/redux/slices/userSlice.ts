@@ -25,7 +25,6 @@ const userSlice = createSlice({
       state.isLoggedIn = false;
     },
     setTheme: (state, action: PayloadAction<'light' | 'dark' | 'violet'>) => {
-      console.log(action);
       state.theme = action.payload;
     },
   },
