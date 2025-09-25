@@ -24,9 +24,11 @@ export const taskProApi = createApi({
   baseQuery: baseQueryWithReauth,
   tagTypes: ['User'],
   endpoints: builder => ({
-    getUserById: builder.query<User, number>({
-      query: id => `auth/${id}`,
-      providesTags: (result, error, id) => [{ type: 'User', id }],
+    getUserById: builder.query<any, void>({
+      query: () => ({
+        url: 'auth/profile',
+        method: 'GET',
+      }),
     }),
     registerUser: builder.mutation<AuthRequest, Partial<AuthRequest>>({
       query: body => ({

@@ -2,9 +2,14 @@ import { useState } from 'react';
 import sprite from '../../assets/sprite.svg';
 import DropdownTheme from '../DropdownTheme/DropdownTheme';
 import MobileSidebar from '../MobileSidebar/MobileSidebar';
+import { useGetUserByIdQuery } from '../../redux/api/authApi';
 
 const Header = () => {
+  const { data } = useGetUserByIdQuery();
+
   const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  console.log(data);
 
   return (
     <header className='w-full px-6 py-4.5 bg-header flex justify-between items-center'>
@@ -15,7 +20,7 @@ const Header = () => {
         <DropdownTheme />
         <div className='flex items-center gap-2'>
           <p className='text-sm text-text-theme font-medium -tacking-[0.28px]'>
-            User Name
+            {data ? data.data?.name : 'User Name'}
           </p>
           <button
             className='relative bg-bg-dark w-8 h-8 rounded-lg flex justify-center items-end hover:shadow-[0_2px_6px_var(--color-brand)]'
