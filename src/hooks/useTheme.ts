@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
-
-type Theme = 'light' | 'dark' | 'violet';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { selectTheme } from '../redux/slectors/userSelectors';
 
 const useTheme = () => {
-  const [theme, setTheme] = useState<Theme>('dark');
+  const theme = useSelector(selectTheme);
 
   useEffect(() => {
     document.body.classList.remove('light', 'violet');
@@ -13,7 +13,7 @@ const useTheme = () => {
     }
   }, [theme]);
 
-  return { theme, setTheme };
+  return { theme };
 };
 
 export default useTheme;

@@ -1,11 +1,14 @@
 import sprite from '../../assets/sprite.svg';
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import useTheme from '../../hooks/useTheme';
+import { setTheme } from '../../redux/slices/userSlice';
+import { useDispatch } from 'react-redux';
 
 type Theme = 'light' | 'dark' | 'violet';
 
 const DropdownTheme = () => {
-  const { theme, setTheme } = useTheme();
+  const { theme } = useTheme();
+  const dispatch = useDispatch();
 
   const Themes = ['Light', 'Dark', 'Violet'];
 
@@ -27,7 +30,10 @@ const DropdownTheme = () => {
           {Themes.map(item => (
             <MenuItem key={item}>
               <button
-                onClick={() => setTheme(item.toLowerCase() as Theme)}
+                onClick={() => {
+                  console.log('cleck menu', item.toLowerCase());
+                  dispatch(setTheme(item.toLowerCase() as Theme));
+                }}
                 className={`text-text-theme hover:text-hover !text-sm -tracking-[0.28px]
                   ${
                     theme === item.toLowerCase()
