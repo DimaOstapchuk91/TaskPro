@@ -45,6 +45,12 @@ export const taskProApi = createApi({
         body,
       }),
     }),
+    loggedOut: builder.mutation<void, void>({
+      query: () => ({
+        url: 'auth/logout',
+        method: 'POST',
+      }),
+    }),
   }),
 });
 
@@ -52,4 +58,5 @@ export const {
   useGetUserByIdQuery,
   useRegisterUserMutation,
   useLoginUserMutation,
+  useLoggedOutMutation,
 } = taskProApi;
