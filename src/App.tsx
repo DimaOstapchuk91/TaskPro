@@ -14,7 +14,7 @@ function App() {
         <Route
           path='/home'
           element={
-            <PrivateRoute component={<HomePage />} redirectTo='/auth/login' />
+            <PrivateRoute component={HomePage} redirectTo='/auth/login' />
           }
         >
           <Route index element={<ScreensPage />} />
@@ -23,14 +23,12 @@ function App() {
         <Route
           path='/welcome'
           element={
-            <RestrictedRoute component={<WelcomePage />} redirectTo='/home' />
+            <RestrictedRoute component={WelcomePage} redirectTo='/home' />
           }
         />
         <Route
           path='/auth/:id'
-          element={
-            <RestrictedRoute component={<AuthPage />} redirectTo='/home' />
-          }
+          element={<RestrictedRoute component={AuthPage} redirectTo='/home' />}
         />
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
