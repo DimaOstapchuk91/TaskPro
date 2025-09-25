@@ -5,7 +5,7 @@ import type {
   FetchArgs,
   FetchBaseQueryError,
 } from '@reduxjs/toolkit/query';
-import { loggedOut, tokenReceived } from '../slices/userSlice';
+import { setIsLoggedOut, tokenReceived } from '../slices/userSlice';
 
 import { Mutex } from 'async-mutex';
 
@@ -55,7 +55,7 @@ export const baseQueryWithReauth: BaseQueryFn<
           // retry the initial query
           result = await baseQuery(args, api, extraOptions);
         } else {
-          api.dispatch(loggedOut());
+          api.dispatch(setIsLoggedOut());
         }
       } finally {
         release();

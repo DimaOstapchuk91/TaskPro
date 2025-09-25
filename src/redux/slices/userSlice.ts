@@ -20,7 +20,7 @@ const userSlice = createSlice({
       state.accessToken = action.payload.accessToken;
       state.isLoggedIn = true;
     },
-    loggedOut: state => {
+    setIsLoggedOut: state => {
       state.accessToken = null;
       state.isLoggedIn = false;
     },
@@ -30,6 +30,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { tokenReceived, loggedOut, setTheme } = userSlice.actions;
+export const { tokenReceived, setIsLoggedOut, setTheme } = userSlice.actions;
 
 export const authReducer = userSlice.reducer;
