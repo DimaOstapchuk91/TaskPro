@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import sprite from '../../assets/sprite.svg';
-import Modal from '../modals/Modal';
-import BoardModal from '../modals/BoardModal/BoardModal';
+import sprite from '../../../assets/sprite.svg';
+import Modal from '../../modals/Modal';
+import BoardModal from '../../modals/BoardModal/BoardModal';
 
 const AddBoardBtn = () => {
   const [isOpenCreateModal, setIsOpenCreateModal] = useState<boolean>(false);
@@ -13,6 +13,7 @@ const AddBoardBtn = () => {
   const handleCloseCreateModal = () => {
     setIsOpenCreateModal(false);
   };
+
   return (
     <div className='flex py-3.5 mb-10 justify-between w-full border-y border-white/10 '>
       <p className='max-w-[76px] text-sm font-medium -tracking-[0.28px]'>

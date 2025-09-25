@@ -18,7 +18,7 @@ import { authReducer } from './slices/userSlice';
 const persistUserConfig = {
   key: 'userData',
   storage,
-  whitelist: ['accessToken', 'theme'],
+  whitelist: ['accessToken', 'theme', 'isLoggedIn'],
 };
 
 const persistUserReducer = persistReducer(persistUserConfig, authReducer);
