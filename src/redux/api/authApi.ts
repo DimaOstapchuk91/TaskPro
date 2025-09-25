@@ -7,6 +7,18 @@ export interface User {
   email: string;
 }
 
+export interface AuthRequest {
+  name: string;
+  email: string;
+  password: string;
+}
+
+type LoginQuery = Pick<AuthRequest, 'email' | 'password'>;
+
+export interface LoginResponce {
+  data: { accessToken: string };
+}
+
 export const taskProApi = createApi({
   reducerPath: 'taskProApi',
   baseQuery: baseQueryWithReauth,
@@ -16,17 +28,17 @@ export const taskProApi = createApi({
       query: id => `auth/${id}`,
       providesTags: (result, error, id) => [{ type: 'User', id }],
     }),
-    registerUser: builder.mutation<User, Partial<User>>({
+    registerUser: builder.mutation<AuthRequest, Partial<AuthRequest>>({
       query: body => ({
-        url: 'auth',
+        url: 'auth/register',
         method: 'POST',
         body,
       }),
       invalidatesTags: ['User'],
     }),
-    loginUser: builder.query<User, Partial<User>>({
+    loginUser: builder.mutation<LoginResponce, Partial<LoginQuery>>({
       query: body => ({
-        url: 'auth',
+        url: 'auth/login',
         method: 'POST',
         body,
       }),
@@ -37,5 +49,5 @@ export const taskProApi = createApi({
 export const {
   useGetUserByIdQuery,
   useRegisterUserMutation,
-  useLoginUserQuery,
+  useLoginUserMutation,
 } = taskProApi;

@@ -40,8 +40,6 @@ export const orderLoginSchema = Yup.object({
   password: passwordValid,
 });
 
-export type LoginFormValues = Yup.InferType<typeof orderLoginSchema>;
-
 export const orderEditUserSchema = Yup.object({
   name: nameValid,
   email: emailValid,
@@ -71,5 +69,13 @@ export const orderBoardSchema = Yup.object({
     ),
   boardBg: Yup.string().nullable(),
 });
+
+// Types
+
+export type LoginFormValues = Yup.InferType<typeof orderLoginSchema>;
+
+export type RegistrationFormValues = Yup.InferType<
+  typeof orderRegistrationSchema
+>;
 
 export type BoardFormValues = Yup.InferType<typeof orderBoardSchema>;

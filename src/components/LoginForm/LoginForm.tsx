@@ -4,9 +4,15 @@ import { LoginFormValues, orderLoginSchema } from '../../utils/formValidation';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import sprite from '../../assets/sprite.svg';
+import { useLoginUserMutation } from '../../redux/api/authApi';
+import { tokenReceived } from '../../redux/slices/userSlice';
+import { useDispatch } from 'react-redux';
 
 const LoginForm = () => {
+  const [loginUser, { isLoading }] = useLoginUserMutation();
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
+
+  const dispatch = useDispatch();
 
   const {
     handleSubmit,
@@ -17,8 +23,14 @@ const LoginForm = () => {
     mode: 'onChange',
   });
 
-  const onSubmit = (data: LoginFormValues) => {
-    console.log(data);
+  const onSubmit = async (data: LoginFormValues) => {
+    try {
+      const result = await loginUser(data).unwrap();
+      console.log('Успішний вхід:', result);
+      dispatch(tokenReceived({ accessToken: result.data.accessToken }));
+    } catch (err) {
+      console.error('Помилка входу', err);
+    }
   };
 
   const togglePasswordVisibility = () => {

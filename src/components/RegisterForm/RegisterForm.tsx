@@ -1,11 +1,16 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { orderRegistrationSchema } from '../../utils/formValidation';
-import { NavLink } from 'react-router-dom';
+import {
+  orderRegistrationSchema,
+  RegistrationFormValues,
+} from '../../utils/formValidation';
+import { Navigate, NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import sprite from '../../assets/sprite.svg';
+import { useRegisterUserMutation } from '../../redux/api/authApi';
 
 const RegisterForm = () => {
+  const [registerUser, { isLoading, isSuccess }] = useRegisterUserMutation();
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
   const [repeatPasswordVisible, setRepeatPasswordVisible] =
     useState<boolean>(false);
@@ -19,10 +24,20 @@ const RegisterForm = () => {
     mode: 'onChange',
   });
 
-  const onSubmit = (data: any) => {
-    // const { name, email, password } = data;
-    console.log(data);
+  const onSubmit = async (data: RegistrationFormValues) => {
+    const { name, email, password } = data;
+
+    try {
+      const result = await registerUser({ name, email, password }).unwrap();
+      console.log('Успішна реєстрація:', result);
+    } catch (err) {
+      console.error('Помилка при реєстрації:', err);
+    }
   };
+
+  if (isSuccess) {
+    return <Navigate to='/auth/login' />;
+  }
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
@@ -182,7 +197,7 @@ const RegisterForm = () => {
         className='w-full bg-label-green rounded-lg p-3.5 text-text-dark text-sm -tracking-[0.28px] hover:bg-hover transition-all duration-300 cursor-pointer'
         type='submit'
       >
-        Register Now
+        {isLoading ? 'Registering...' : 'Register Now'}
       </button>
     </form>
   );
