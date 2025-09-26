@@ -1,9 +1,10 @@
 import Logo from '../Logo/Logo';
-import sprite from '../../assets/sprite.svg';
+
 import BoardList from '../BoardList/BoardList';
-import flowerpot from '../../assets/img/flowerpot.png';
+
 import AddBoardBtn from '../btn/AddBoardBtn/AddBoardBtn';
 import LoggOutBtn from '../btn/LoggOutBtn/LoggOutBtn';
+import NeedHelp from '../NeedHelp/NeedHelp';
 
 const Sidebar = () => {
   const mokedBoards = [
@@ -23,30 +24,7 @@ const Sidebar = () => {
         </nav>
       </div>
       <div>
-        <div className='p-3.5 mb-6 bg-bg-dark rounded-lg md:p-5'>
-          <img
-            className='mb-3.5'
-            src={flowerpot}
-            alt='flowerpot img'
-            width={54}
-            height={78}
-          />
-          <p className='text-xs mb-4.5 -tracking-[0.24px] leading-4 md:text-sm md:liding-5 md:-tracking-[0.28px]'>
-            If you need help with
-            <br />
-            <span className='text-label-green'>TaskPro</span>, check out our
-            support resources or reach out to our customer support team.
-          </p>
-          <button
-            className='flex !text-xs -tracking-[0.24px] stroke-white items-center gap-2 hover:text-hover hover:stroke-hover '
-            type='button'
-          >
-            <svg width='20' height='20' className='fill-transparent'>
-              <use href={`${sprite}#icon-help`}></use>
-            </svg>
-            Need help?
-          </button>
-        </div>
+        <NeedHelp />
         <LoggOutBtn />
       </div>
     </aside>

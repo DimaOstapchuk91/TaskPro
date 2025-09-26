@@ -70,6 +70,14 @@ export const orderBoardSchema = Yup.object({
   boardBg: Yup.string().nullable(),
 });
 
+export const orderNeedHelpShema = Yup.object({
+  email: emailValid.required(),
+  comment: Yup.string()
+    .min(14, 'Minimum 14 symbols')
+    .max(300, 'Max 300 symbols')
+    .required(),
+});
+
 // Types
 
 export type LoginFormValues = Yup.InferType<typeof orderLoginSchema>;
@@ -79,3 +87,4 @@ export type RegistrationFormValues = Yup.InferType<
 >;
 
 export type BoardFormValues = Yup.InferType<typeof orderBoardSchema>;
+export type NeedHelpValues = Yup.InferType<typeof orderNeedHelpShema>;

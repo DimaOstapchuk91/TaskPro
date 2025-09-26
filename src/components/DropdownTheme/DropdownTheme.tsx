@@ -30,10 +30,7 @@ const DropdownTheme = () => {
           {Themes.map(item => (
             <MenuItem key={item}>
               <button
-                onClick={() => {
-                  console.log('cleck menu', item.toLowerCase());
-                  dispatch(setTheme(item.toLowerCase() as Theme));
-                }}
+                onClick={() => dispatch(setTheme(item.toLowerCase() as Theme))}
                 className={`text-text-theme hover:text-hover !text-sm -tracking-[0.28px]
                   ${
                     theme === item.toLowerCase()
