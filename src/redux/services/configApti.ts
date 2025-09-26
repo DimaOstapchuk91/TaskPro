@@ -44,17 +44,13 @@ export const baseQueryWithReauth: BaseQueryFn<
 
   if (result.error && result.error.status === 401) {
     if (!mutex.isLocked()) {
-      console.log('1. Спрацювала функція рефрешу');
       const release = await mutex.acquire();
       try {
-        console.log('2. Зайшли в трай');
         const refreshResult = await baseQuery(
           { url: 'auth/refresh', method: 'POST' },
           api,
           extraOptions
         );
-
-        console.log('3. Лог після refreshResult', refreshResult);
 
         if (
           refreshResult.data &&
@@ -62,7 +58,6 @@ export const baseQueryWithReauth: BaseQueryFn<
           'accessToken' in (refreshResult.data as RefreshResponse).data
         ) {
           // store the new token
-          console.log('4. спрацював рефреш, в помилку не впав');
           const { accessToken } = (refreshResult.data as RefreshResponse).data;
 
           api.dispatch(tokenReceived({ accessToken }));
@@ -71,14 +66,11 @@ export const baseQueryWithReauth: BaseQueryFn<
         } else {
           api.dispatch(setIsLoggedOut());
         }
-        console.log('5. спрацював рефреш, поза іф');
       } finally {
-        console.log('6. Виключаєм блок Finally');
         release();
       }
     } else {
       await mutex.waitForUnlock();
-      console.log('7. спрацював елс');
       result = await baseQuery(args, api, extraOptions);
     }
   }

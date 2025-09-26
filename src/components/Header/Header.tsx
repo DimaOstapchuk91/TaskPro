@@ -9,8 +9,6 @@ const Header = () => {
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  console.log(data);
-
   return (
     <header className='w-full px-6 py-4.5 bg-header flex justify-between items-center'>
       <div className=' xl:hidden'>

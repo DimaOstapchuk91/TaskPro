@@ -5,6 +5,8 @@ export interface User {
   id: number;
   name: string;
   email: string;
+  avatar_url: string | null;
+  theme: string;
 }
 
 export interface AuthRequest {
@@ -12,6 +14,12 @@ export interface AuthRequest {
   email: string;
   password: string;
 }
+
+export type GetUserRequest = {
+  data: User;
+  message: string;
+  status: number;
+};
 
 type LoginQuery = Pick<AuthRequest, 'email' | 'password'>;
 
@@ -24,7 +32,7 @@ export const taskProApi = createApi({
   baseQuery: baseQueryWithReauth,
   tagTypes: ['User'],
   endpoints: builder => ({
-    getUserById: builder.query<any, void>({
+    getUserById: builder.query<GetUserRequest, void>({
       query: () => ({
         url: 'auth/profile',
         method: 'GET',

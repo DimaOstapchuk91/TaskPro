@@ -9,7 +9,7 @@ import { tokenReceived } from '../../redux/slices/userSlice';
 import { useDispatch } from 'react-redux';
 
 const LoginForm = () => {
-  const [loginUser, { isLoading }] = useLoginUserMutation();
+  const [loginUser] = useLoginUserMutation();
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
 
   const dispatch = useDispatch();
@@ -26,7 +26,6 @@ const LoginForm = () => {
   const onSubmit = async (data: LoginFormValues) => {
     try {
       const result = await loginUser(data).unwrap();
-      console.log('Успішний вхід:', result);
       dispatch(tokenReceived({ accessToken: result.data.accessToken }));
     } catch (err) {
       console.error('Помилка входу', err);
