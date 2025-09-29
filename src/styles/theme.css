@@ -9,10 +9,10 @@
   --color-header: #161616;
   --color-text-theme: #ffffff;
 
-  --color-lable-gray: rgba(255, 255, 255, 0.3);
+  --color-label-gray: rgba(255, 255, 255, 0.3);
   --color-label-violet: #8fa1d0;
   --color-label-pink: #e09cb5;
-  --color-label-grean: #bedbb0;
+  --color-label-green: #bedbb0;
 
   --error-color: #ef2447;
 }
@@ -28,10 +28,10 @@
   --color-text-dark: #ffffff;
   --color-text-theme: #161616;
 
-  --color-lable-gray: rgba(255, 255, 255, 0.3);
+  --color-label-gray: rgba(255, 255, 255, 0.3);
   --color-label-violet: #8fa1d0;
   --color-label-pink: #e09cb5;
-  --color-label-grean: #bedbb0;
+  --color-label-green: #bedbb0;
 
   --error-color: #ef2447;
 }
@@ -48,10 +48,10 @@
   --color-text-dark: #ffffff;
   --color-text-theme: #161616;
 
-  --color-lable-gray: rgba(255, 255, 255, 0.3);
+  --color-label-gray: rgba(255, 255, 255, 0.3);
   --color-label-violet: #8fa1d0;
   --color-label-pink: #e09cb5;
-  --color-label-grean: #bedbb0;
+  --color-label-green: #bedbb0;
 
   --error-color: #ef2447;
 }

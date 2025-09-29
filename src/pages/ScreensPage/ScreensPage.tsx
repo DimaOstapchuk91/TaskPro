@@ -8,13 +8,9 @@ const ScreensPage = () => {
   return (
     <section className='flex flex-col h-full bg-bg-light p-5'>
       <div className='flex justify-between items-start mb-6.5 flex-shrink-0'>
-        {boardId ? (
-          <h2 className='text-sm text-text-theme font-medium -tracking-[0.28px]'>
-            Title Board: {boardId}
-          </h2>
-        ) : (
-          <div />
-        )}
+        <h2 className='text-sm text-text-theme font-medium -tracking-[0.28px]'>
+          Title Board: {boardId}
+        </h2>
 
         <button
           className='flex items-center gap-1 stroke-text-theme/80 text-text-theme/80 hover:stroke-hover hover:text-hover '

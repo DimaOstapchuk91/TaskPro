@@ -14,10 +14,10 @@
   --color-white: var(--color-white);
   --color-text-dark: var(--color-text-dark);
   --color-text-theme: var(--color-text-theme);
-  --color-label-gray: var(--color-lable-gray);
+  --color-label-gray: var(--color-label-gray);
   --color-label-violet: var(--color-label-violet);
   --color-label-pink: var(--color-label-pink);
-  --color-label-green: var(--color-label-grean);
+  --color-label-green: var(--color-label-green);
   --color-error: var(--error-color);
 }
 

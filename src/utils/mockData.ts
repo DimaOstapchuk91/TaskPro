@@ -14,7 +14,8 @@ export const mockTasks = [
   {
     id: 'task-1',
     title: 'Fix login bug',
-    description: 'Користувачі не можуть увійти з мобільних пристроїв',
+    description:
+      'Користувачі не можуть увійти з мобільних пристроїв lorem-10 lorem-10 lorem-10 lorem-10 lorem-10 lorem-10 lorem-10 lorem-10 lorem-10 lorem-10 lorem-10 lorem-10',
     priority: 'High',
     deadline: '2025-10-10',
     columnId: 'col-1',
