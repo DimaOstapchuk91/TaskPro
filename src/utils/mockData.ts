@@ -1,7 +1,13 @@
 export const mockColumns = [
   { id: 'col-1', boardId: '1', title: 'To Do' },
-  { id: 'col-2', boardId: '2', title: 'In Progress' },
-  { id: 'col-3', boardId: '3', title: 'Done' },
+  { id: 'col-2', boardId: '1', title: 'In Progress' },
+  { id: 'col-3', boardId: '1', title: 'Done' },
+  { id: 'col-4', boardId: '2', title: 'To Do' },
+  { id: 'col-5', boardId: '2', title: 'In Progress' },
+  { id: 'col-6', boardId: '2', title: 'Done' },
+  { id: 'col-7', boardId: '3', title: 'To Do' },
+  { id: 'col-8', boardId: '3', title: 'In Progress' },
+  { id: 'col-9', boardId: '3', title: 'Done' },
 ];
 
 export const mockTasks = [

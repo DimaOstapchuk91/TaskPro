@@ -1,17 +1,17 @@
 import { Outlet } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import Sidebar from '../../components/Sidebar/Sidebar';
-// import ScreensPage from '../ScreensPage/ScreensPage';
 
 const HomePage = () => {
   return (
-    <section className='w-full h-screen flex overflow-hidden'>
-      <div className='hidden max-w-[260px]  xl:flex flex-shrink-0'>
+    <section className='h-screen flex'>
+      <div className='hidden xl:flex w-[260px] flex-shrink-0'>
         <Sidebar />
       </div>
-      <div className='flex-1 relative flex flex-col'>
+
+      <div className='flex-1 w-full h-full relative flex flex-col overflow-hidden'>
         <Header />
-        <div className='flex-1 overflow-auto'>
+        <div className='flex-1'>
           <Outlet />
         </div>
       </div>
