@@ -1,0 +1,56 @@
+export const mockColumns = [
+  { id: 'col-1', boardId: '1', title: 'To Do' },
+  { id: 'col-2', boardId: '2', title: 'In Progress' },
+  { id: 'col-3', boardId: '3', title: 'Done' },
+];
+
+export const mockTasks = [
+  {
+    id: 'task-1',
+    title: 'Fix login bug',
+    description: 'Користувачі не можуть увійти з мобільних пристроїв',
+    priority: 'High',
+    deadline: '2025-10-10',
+    columnId: 'col-1',
+  },
+  {
+    id: 'task-2',
+    title: 'Update landing page',
+    description: 'Додати секцію з відгуками клієнтів та покращити SEO',
+    priority: 'Medium',
+    deadline: '2025-10-15',
+    columnId: 'col-1',
+  },
+  {
+    id: 'task-3',
+    title: 'Database backup',
+    description: 'Налаштувати щоденний резервний бекап на хмару',
+    priority: 'Low',
+    deadline: '2025-10-20',
+    columnId: 'col-2',
+  },
+  {
+    id: 'task-4',
+    title: 'Refactor header component',
+    description: 'Оптимізувати код, прибрати дублювання стилів',
+    priority: 'Without',
+    deadline: '2025-10-05',
+    columnId: 'col-2',
+  },
+  {
+    id: 'task-5',
+    title: 'Prepare presentation',
+    description: 'Зробити слайди для демо-зустрічі з клієнтом',
+    priority: 'High',
+    deadline: '2025-10-12',
+    columnId: 'col-3',
+  },
+  {
+    id: 'task-6',
+    title: 'Improve dark mode',
+    description: 'Додати підтримку темної теми для дашборду',
+    priority: 'Medium',
+    deadline: '2025-10-18',
+    columnId: 'col-3',
+  },
+];

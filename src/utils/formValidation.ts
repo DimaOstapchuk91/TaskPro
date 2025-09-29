@@ -26,6 +26,11 @@ const passwordValid = Yup.string()
   .min(7, 'Minimum 7 symbols')
   .max(50, 'Maximum 50 symbols');
 
+const titleValid = Yup.string()
+  .required('Title is required')
+  .min(2, 'Minimum 2 symbols')
+  .max(50, 'Maximum 50 symbols');
+
 export const orderRegistrationSchema = Yup.object({
   name: nameValid,
   email: emailValid,
@@ -48,10 +53,7 @@ export const orderEditUserSchema = Yup.object({
 });
 
 export const orderBoardSchema = Yup.object({
-  boardTitle: Yup.string()
-    .required('Task name is required')
-    .min(2, 'Minimum 2 symbols')
-    .max(50, 'Maximum 50 symbols'),
+  boardTitle: titleValid,
   boardIcon: Yup.string()
     .required('Icon is required')
     .oneOf(
@@ -78,6 +80,10 @@ export const orderNeedHelpShema = Yup.object({
     .required(),
 });
 
+export const orderColumnShema = Yup.object({
+  columnTitle: titleValid,
+});
+
 // Types
 
 export type LoginFormValues = Yup.InferType<typeof orderLoginSchema>;
@@ -88,3 +94,4 @@ export type RegistrationFormValues = Yup.InferType<
 
 export type BoardFormValues = Yup.InferType<typeof orderBoardSchema>;
 export type NeedHelpValues = Yup.InferType<typeof orderNeedHelpShema>;
+export type ColumnValues = Yup.InferType<typeof orderColumnShema>;

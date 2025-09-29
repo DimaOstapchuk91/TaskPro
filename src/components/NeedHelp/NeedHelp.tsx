@@ -7,8 +7,6 @@ import NeedHelpModal from '../modals/NeedHelpModal/NeedHelpModal';
 const NeedHelp = () => {
   const [isOpenHelpModal, setIsOpenHelpModal] = useState<boolean>(false);
 
-  console.log(isOpenHelpModal);
-
   const handleCloseHelpModal = () => {
     setIsOpenHelpModal(false);
   };
@@ -24,7 +22,7 @@ const NeedHelp = () => {
       <p className='text-xs mb-4.5 -tracking-[0.24px] leading-4 md:text-sm md:liding-5 md:-tracking-[0.28px]'>
         If you need help with
         <br />
-        <span className='text-label-green'>TaskPro</span>, check out our support
+        <span className='text-brand'>TaskPro</span>, check out our support
         resources or reach out to our customer support team.
       </p>
       <button
