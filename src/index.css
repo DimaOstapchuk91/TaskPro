@@ -1,6 +1,11 @@
 @import 'modern-normalize';
 @import 'tailwindcss';
 
+@plugin 'tailwind-scrollbar' {
+  nocompatible: true;
+  preferredstrategy: 'pseudoelements';
+}
+
 @theme inline {
   --font-display: 'Poppins', 'sans-serif';
   --breakpoint-2xl: 1280px;

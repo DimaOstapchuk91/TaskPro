@@ -9,8 +9,8 @@ interface BoardContentProps {
 const BoardContent = ({ id }: BoardContentProps) => {
   console.log(mockColumns);
   return (
-    <div className='h-full'>
-      <div className='flex flex-nowrap gap-4.5 w-max h-full'>
+    <div className='h-full w-full'>
+      <div className='flex flex-nowrap gap-8.5 w-max h-full'>
         {mockColumns
           .filter(item => item.boardId === id)
           .map(item => (

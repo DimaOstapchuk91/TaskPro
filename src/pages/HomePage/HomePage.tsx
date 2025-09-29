@@ -4,7 +4,7 @@ import Sidebar from '../../components/Sidebar/Sidebar';
 
 const HomePage = () => {
   return (
-    <section className='h-screen flex'>
+    <section className='h-full flex'>
       <div className='hidden xl:flex w-[260px] flex-shrink-0'>
         <Sidebar />
       </div>

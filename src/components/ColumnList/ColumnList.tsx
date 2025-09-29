@@ -8,8 +8,8 @@ interface ColumnListProps {
 
 const ColumnList = ({ column }: ColumnListProps) => {
   return (
-    <div className=' w-[335px]  snap-center'>
-      <div className='relative px-5 py-4.5 mb-3.5 bg-bg w-full rounded-lg '>
+    <div className=' w-[335px]  snap-center flex flex-col'>
+      <div className='relative  px-5 py-4.5 mb-3.5 bg-bg w-full rounded-lg '>
         <h2 className='text-sm font-medium -tracking-[0.28px]'>
           {column.title}
         </h2>
@@ -40,14 +40,19 @@ const ColumnList = ({ column }: ColumnListProps) => {
           </button>
         </div>
       </div>
-      <ul className='flex flex-col gap-2'>
+      <ul className=' flex  flex-col pr-2  -mr-4 gap-2 mb-3.5 h-[calc(100vh-314px)]  overflow-y-auto overflow-hidden  scrollbar-thumb-bg scrollbar-track-text-theme/10 scrollbar-thumb-rounded-full scrollbar-w-2 scrollbar scrollbar-track-rounded-full'>
         {mockTasks
           .filter(item => item.columnId === column.id)
           .map(item => (
             <ColumnItem key={item.id} taskData={item} />
           ))}
       </ul>
-      <button type='button'>Add another card</button>
+      <button
+        className='p-3.5 w-full !text-sm font-bold -tracking-[0.26px] bg-brand rounded-lg  text-text-dark hover:bg-hover'
+        type='button'
+      >
+        Add another card
+      </button>
     </div>
   );
 };

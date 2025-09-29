@@ -16,7 +16,7 @@ const ColumnItem = ({ taskData }: ColumnItemProps) => {
   return (
     <div
       className={clsx(
-        'p-5 bg-header rounded-tl-[4px] rounded-bl-[4px] border-l-4',
+        'p-5 bg-header rounded-tl-[4px] rounded-bl-[4px] rounded-r-lg border-l-4',
         {
           'border-label-green': taskData.priority === 'High',
           'border-label-pink': taskData.priority === 'Medium',
