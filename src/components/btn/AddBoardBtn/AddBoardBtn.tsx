@@ -6,10 +6,6 @@ import BoardModal from '../../modals/BoardModal/BoardModal';
 const AddBoardBtn = () => {
   const [isOpenCreateModal, setIsOpenCreateModal] = useState<boolean>(false);
 
-  const handleOpenCreateModal = () => {
-    setIsOpenCreateModal(true);
-  };
-
   const handleCloseCreateModal = () => {
     setIsOpenCreateModal(false);
   };
@@ -22,7 +18,7 @@ const AddBoardBtn = () => {
       <button
         className='w-10 h-9 flex justify-center items-center bg-brand rounded-[6px] hover:bg-hover'
         type='button'
-        onClick={handleOpenCreateModal}
+        onClick={() => setIsOpenCreateModal(true)}
       >
         <svg width='20' height='20' className='stroke-text-dark'>
           <use href={`${sprite}#icon-plus`}></use>

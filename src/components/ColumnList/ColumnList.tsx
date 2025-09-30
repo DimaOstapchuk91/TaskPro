@@ -48,9 +48,18 @@ const ColumnList = ({ column }: ColumnListProps) => {
           ))}
       </ul>
       <button
-        className='p-3.5 w-full !text-sm font-bold -tracking-[0.26px] bg-brand rounded-lg  text-text-dark hover:bg-hover'
+        className='p-3.5 flex items-center gap-2 justify-center w-full !text-sm font-bold -tracking-[0.26px] bg-brand rounded-lg  text-text-dark hover:bg-hover'
         type='button'
       >
+        <span className='flex justify-center items-center rounded w-7 h-7 bg-text-dark'>
+          <svg
+            width='14'
+            height='14'
+            className='stroke-text-theme fill-transparent'
+          >
+            <use href={`${sprite}#icon-plus`}></use>
+          </svg>
+        </span>
         Add another card
       </button>
     </div>
