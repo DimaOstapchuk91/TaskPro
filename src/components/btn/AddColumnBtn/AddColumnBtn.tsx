@@ -29,7 +29,7 @@ const AddColumnBtn = () => {
         <p className='text-sm text-text-theme'>Add another column</p>
       </button>
       <Modal isOpen={isOpenCreateModal} onClose={handleCloseCreateModal}>
-        <ColumnModal onClose={handleCloseCreateModal} mode={'Add column'} />
+        <ColumnModal onClose={handleCloseCreateModal} mode={'create'} />
       </Modal>
     </>
   );

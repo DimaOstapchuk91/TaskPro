@@ -1,8 +1,8 @@
 import { NavLink, useMatch } from 'react-router-dom';
 import sprite from '../../assets/sprite.svg';
-import { useState } from 'react';
-import Modal from '../modals/Modal';
+
 import BoardModal from '../modals/BoardModal/BoardModal';
+import ControlButtons from '../btn/ControlButtons/ControlButtons';
 
 interface BoardTypes {
   id: string;
@@ -17,14 +17,8 @@ interface BoardListItemProps {
 const BoardListItem = ({ board }: BoardListItemProps) => {
   const match = useMatch(`/home/${board.id}`);
 
-  const [isOpenEditModal, setIsOpenEditModal] = useState<boolean>(false);
-
-  const handleOpenEditModal = () => {
-    setIsOpenEditModal(true);
-  };
-
-  const handleCloseEditModal = () => {
-    setIsOpenEditModal(false);
+  const handleDellBoard = async () => {
+    console.log('Видаляємо дошку');
   };
 
   return (
@@ -52,36 +46,13 @@ const BoardListItem = ({ board }: BoardListItemProps) => {
       </NavLink>
       {match && (
         <div className='absolute top-1/2 -translate-y-1/2 right-0 flex gap-2 '>
-          <button
-            className='opacity-40 hover:opacity-100  cursor-pointer transition-all duration-300'
-            type='button'
-            onClick={handleOpenEditModal}
-          >
-            <svg
-              className='stroke-white fill-transparent hover:stroke-brand hover:drop-shadow-[0_0_6px_var(--color-brand)] transition-all duration-300'
-              width={16}
-              height={16}
-            >
-              <use href={`${sprite}#icon-pencil`} />
-            </svg>
-          </button>
-          <button
-            className='opacity-40 hover:opacity-100 cursor-pointer transition-all duration-300'
-            type='button'
-          >
-            <svg
-              className='stroke-white fill-transparent hover:stroke-error hover:drop-shadow-[0_0_6px_var(--color-error)]  transition-all duration-300'
-              width={16}
-              height={16}
-            >
-              <use href={`${sprite}#icon-trash`} />
-            </svg>
-          </button>
+          <ControlButtons
+            confirmAction={handleDellBoard}
+            confirmTitle={'Delete Board?'}
+            CreateModal={BoardModal}
+          />
         </div>
       )}
-      <Modal isOpen={isOpenEditModal} onClose={handleCloseEditModal}>
-        <BoardModal onClose={handleCloseEditModal} mode={'edit'} />
-      </Modal>
     </li>
   );
 };

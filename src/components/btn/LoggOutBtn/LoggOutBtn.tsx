@@ -2,9 +2,9 @@ import { useLoggedOutMutation } from '../../../redux/api/authApi';
 import sprite from '../../../assets/sprite.svg';
 import { useState } from 'react';
 import Modal from '../../modals/Modal';
-import LoggOutConfirmModal from '../../modals/LoggOutConfirmModal/LoggOutConfirmModal';
 import { useDispatch } from 'react-redux';
 import { setIsLoggedOut } from '../../../redux/slices/userSlice';
+import ConfirmModal from '../../modals/ConfirmModal/ConfirmModal';
 
 const LoggOutBtn = () => {
   const [loggedOut] = useLoggedOutMutation();
@@ -40,8 +40,9 @@ const LoggOutBtn = () => {
         Log out
       </button>
       <Modal isOpen={isOpenConfirmModal} onClose={handleCloseConfirmModal}>
-        <LoggOutConfirmModal
-          loggOut={handleLoggedOut}
+        <ConfirmModal
+          title={'You want to leave?'}
+          action={handleLoggedOut}
           onClose={handleCloseConfirmModal}
         />
       </Modal>

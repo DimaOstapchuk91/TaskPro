@@ -1,5 +1,7 @@
 import clsx from 'clsx';
 import sprite from '../../assets/sprite.svg';
+import ControlButtons from '../btn/ControlButtons/ControlButtons';
+import TaskModal from '../modals/TaskModal/TaskModal';
 
 interface ColumnItemProps {
   taskData: {
@@ -13,6 +15,9 @@ interface ColumnItemProps {
 }
 
 const ColumnItem = ({ taskData }: ColumnItemProps) => {
+  const handleDellTask = async () => {
+    console.log('Видалення завдання');
+  };
   return (
     <div
       className={clsx(
@@ -58,7 +63,7 @@ const ColumnItem = ({ taskData }: ColumnItemProps) => {
             </p>
           </div>
         </div>
-        <div className='flex gap-2'>
+        <div className='flex gap-2 relative'>
           <button
             className='opacity-40 hover:opacity-100  cursor-pointer transition-all duration-300'
             type='button'
@@ -71,30 +76,11 @@ const ColumnItem = ({ taskData }: ColumnItemProps) => {
               <use href={`${sprite}#icon-arrow-circle-right`} />
             </svg>
           </button>
-          <button
-            className='opacity-40 hover:opacity-100  cursor-pointer transition-all duration-300'
-            type='button'
-          >
-            <svg
-              className='stroke-white fill-transparent hover:stroke-brand hover:drop-shadow-[0_0_6px_var(--color-brand)] transition-all duration-300'
-              width={16}
-              height={16}
-            >
-              <use href={`${sprite}#icon-pencil`} />
-            </svg>
-          </button>
-          <button
-            className='opacity-40 hover:opacity-100 cursor-pointer transition-all duration-300'
-            type='button'
-          >
-            <svg
-              className='stroke-white fill-transparent hover:stroke-error hover:drop-shadow-[0_0_6px_var(--color-error)]  transition-all duration-300'
-              width={16}
-              height={16}
-            >
-              <use href={`${sprite}#icon-trash`} />
-            </svg>
-          </button>
+          <ControlButtons
+            confirmTitle={'Delete Task?'}
+            confirmAction={handleDellTask}
+            CreateModal={TaskModal}
+          />
         </div>
       </div>
     </div>

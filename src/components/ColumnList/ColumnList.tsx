@@ -1,12 +1,18 @@
 import { mockTasks } from '../../utils/mockData';
+import ControlButtons from '../btn/ControlButtons/ControlButtons';
 import ColumnItem from '../ColumnItem/ColumnItem';
 import sprite from '../../assets/sprite.svg';
+import ColumnModal from '../modals/ColumnModal/ColumnModal';
 
 interface ColumnListProps {
   column: { id: string; title: string };
 }
 
 const ColumnList = ({ column }: ColumnListProps) => {
+  const handleDellColumn = async () => {
+    console.log('Виадалення колонки');
+  };
+
   return (
     <div className=' w-[335px]  snap-center flex flex-col'>
       <div className='relative  px-5 py-4.5 mb-3.5 bg-bg w-full rounded-lg '>
@@ -14,30 +20,11 @@ const ColumnList = ({ column }: ColumnListProps) => {
           {column.title}
         </h2>
         <div className='absolute top-1/2 -translate-y-1/2 right-5 flex gap-2 '>
-          <button
-            className='opacity-40 hover:opacity-100  cursor-pointer transition-all duration-300'
-            type='button'
-          >
-            <svg
-              className='stroke-white fill-transparent hover:stroke-brand hover:drop-shadow-[0_0_6px_var(--color-brand)] transition-all duration-300'
-              width={16}
-              height={16}
-            >
-              <use href={`${sprite}#icon-pencil`} />
-            </svg>
-          </button>
-          <button
-            className='opacity-40 hover:opacity-100 cursor-pointer transition-all duration-300'
-            type='button'
-          >
-            <svg
-              className='stroke-white fill-transparent hover:stroke-error hover:drop-shadow-[0_0_6px_var(--color-error)]  transition-all duration-300'
-              width={16}
-              height={16}
-            >
-              <use href={`${sprite}#icon-trash`} />
-            </svg>
-          </button>
+          <ControlButtons
+            confirmAction={handleDellColumn}
+            confirmTitle={'Delete column?'}
+            CreateModal={ColumnModal}
+          />
         </div>
       </div>
       <ul className=' flex  flex-col pr-2  -mr-4 gap-2 mb-3.5 h-[calc(100vh-314px)]  overflow-y-auto overflow-hidden  scrollbar-thumb-bg scrollbar-track-text-theme/10 scrollbar-thumb-rounded-full scrollbar-w-2 scrollbar scrollbar-track-rounded-full'>

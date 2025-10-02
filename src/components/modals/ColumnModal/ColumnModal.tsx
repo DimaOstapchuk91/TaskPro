@@ -9,6 +9,8 @@ interface ColumnModalProps {
 }
 
 const ColumnModal = ({ onClose, mode }: ColumnModalProps) => {
+  const title = mode === 'create' ? 'Add column' : 'Edit column';
+
   const { handleSubmit, register } = useForm<ColumnValues>({
     resolver: yupResolver(orderColumnShema),
     mode: 'onSubmit',
@@ -21,7 +23,7 @@ const ColumnModal = ({ onClose, mode }: ColumnModalProps) => {
   return (
     <div className='w-full p-8 bg-header max-w-[335px]  rounded-lg md:max-w-[350px]'>
       <h2 className='text-text-theme w-full text-lg font-medium -tracking-[0.36px] mb-6'>
-        {mode}
+        {title}
       </h2>
 
       <form onSubmit={handleSubmit(handleColumnSubmit)}>
