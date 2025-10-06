@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { selectTheme } from '../redux/slectors/userSelectors';
+import { selectTheme } from '../redux/selectors/userSelectors';
 
 const useTheme = () => {
   const theme = useSelector(selectTheme);

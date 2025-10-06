@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { selectIsLoggedIn } from '../../redux/slectors/userSelectors';
+import { selectIsLoggedIn } from '../../redux/selectors/userSelectors';
 
 interface PrivateRouteProps {
   component: React.ComponentType;
