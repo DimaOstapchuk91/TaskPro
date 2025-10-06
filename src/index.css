@@ -1,5 +1,6 @@
 @import 'modern-normalize';
 @import 'tailwindcss';
+@import './styles/calendar.css';
 
 @plugin 'tailwind-scrollbar' {
   nocompatible: true;
