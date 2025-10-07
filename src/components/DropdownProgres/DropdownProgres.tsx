@@ -9,12 +9,9 @@ const DropdownProgres = () => {
   };
   return (
     <Menu>
-      <MenuButton
-        className='opacity-40 hover:opacity-100  cursor-pointer transition-all duration-300'
-        type='button'
-      >
+      <MenuButton className='' type='button'>
         <svg
-          className='stroke-white fill-transparent hover:stroke-brand hover:drop-shadow-[0_0_6px_var(--color-brand)] transition-all duration-300'
+          className='stroke-text-theme/50 fill-transparent hover:stroke-brand hover:drop-shadow-[0_0_6px_var(--color-brand)] transition-all duration-300'
           width={16}
           height={16}
         >
@@ -35,7 +32,7 @@ const DropdownProgres = () => {
             >
               {item}
               <svg
-                className='stroke-white fill-transparent group-hover:stroke-brand group-hover:drop-shadow-[0_0_6px_var(--color-brand)] transition-all duration-300'
+                className='stroke-text-theme/50 fill-transparent group-hover:stroke-brand group-hover:drop-shadow-[0_0_6px_var(--color-brand)] transition-all duration-300'
                 width={16}
                 height={16}
               >

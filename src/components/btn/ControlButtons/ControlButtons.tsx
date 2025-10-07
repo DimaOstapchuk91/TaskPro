@@ -31,12 +31,12 @@ const ControlButtons = ({
   return (
     <>
       <button
-        className='opacity-40 hover:opacity-100  cursor-pointer transition-all duration-300'
+        className=''
         type='button'
         onClick={() => setIsOpenCreateModal(true)}
       >
         <svg
-          className='stroke-white fill-transparent hover:stroke-brand hover:drop-shadow-[0_0_6px_var(--color-brand)] transition-all duration-300'
+          className='stroke-text-theme/50 fill-transparent hover:stroke-brand hover:drop-shadow-[0_0_6px_var(--color-brand)] transition-all duration-300'
           width={16}
           height={16}
         >
@@ -44,12 +44,12 @@ const ControlButtons = ({
         </svg>
       </button>
       <button
-        className='opacity-40 hover:opacity-100 cursor-pointer transition-all duration-300'
+        className=''
         type='button'
         onClick={() => setIsOpenConfirmModal(true)}
       >
         <svg
-          className='stroke-white fill-transparent hover:stroke-error hover:drop-shadow-[0_0_6px_var(--color-error)]  transition-all duration-300'
+          className='stroke-text-theme/50 fill-transparent hover:stroke-error hover:drop-shadow-[0_0_6px_var(--color-error)]  transition-all duration-300'
           width={16}
           height={16}
         >
