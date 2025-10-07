@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import NoBoardSelected from '../../components/NoBoardSelected/NoBoardSelected';
 import BoardContent from '../../components/BoardContent/BoardContent';
-import sprite from '../../assets/sprite.svg';
+import DropdownFilter from '../../components/DropdownFilter/DropdownFilter';
 
 const ScreensPage = () => {
   const { boardId } = useParams<string>();
@@ -12,15 +12,7 @@ const ScreensPage = () => {
           Title Board: {boardId}
         </h2>
 
-        <button
-          className='flex items-center gap-1 stroke-text-theme/80 text-text-theme/80 hover:stroke-hover hover:text-hover '
-          type='button'
-        >
-          <svg width='16' height='16' className='fill-transparent'>
-            <use href={`${sprite}#icon-filter`}></use>
-          </svg>
-          Filters
-        </button>
+        <DropdownFilter />
       </div>
 
       <div className='flex-1 w-full h-full overflow-x-auto overflow-y-hidden scrollbar-thumb-bg scrollbar-track-text-theme/10 scrollbar-thumb-rounded-full scrollbar-h-2 scrollbar scrollbar-track-rounded-full'>
