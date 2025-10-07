@@ -1,7 +1,7 @@
 import clsx from 'clsx';
-import sprite from '../../assets/sprite.svg';
 import ControlButtons from '../btn/ControlButtons/ControlButtons';
 import TaskModal from '../modals/TaskModal/TaskModal';
+import DropdownProgres from '../DropdownProgres/DropdownProgres';
 
 interface ColumnItemProps {
   taskData: {
@@ -36,7 +36,7 @@ const ColumnItem = ({ taskData }: ColumnItemProps) => {
       <p className='text-xs max-w-[290px] h-8 mb-3.5 text-text-theme/50 leading-4 -tracking-[0.24px] overflow-hidden text-ellipsis  line-clamp-2 '>
         {taskData.description}
       </p>
-      <div className='flex justify-between items-end pt-3.5 border-t border-text-theme/10'>
+      <div className='flex justify-between items-end pt-3.5 border-t border-text-theme/10 relative'>
         <div className='flex gap-3.5'>
           <div>
             <p className='text-[8px] mb-1 text-text-theme/50 -tracking-[0.16px]'>
@@ -64,18 +64,7 @@ const ColumnItem = ({ taskData }: ColumnItemProps) => {
           </div>
         </div>
         <div className='flex gap-2 relative'>
-          <button
-            className='opacity-40 hover:opacity-100  cursor-pointer transition-all duration-300'
-            type='button'
-          >
-            <svg
-              className='stroke-white fill-transparent hover:stroke-brand hover:drop-shadow-[0_0_6px_var(--color-brand)] transition-all duration-300'
-              width={16}
-              height={16}
-            >
-              <use href={`${sprite}#icon-arrow-circle-right`} />
-            </svg>
-          </button>
+          <DropdownProgres />
           <ControlButtons
             confirmTitle={'Delete Task?'}
             confirmAction={handleDellTask}
