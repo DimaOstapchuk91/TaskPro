@@ -28,8 +28,6 @@ const TaskModal = ({ onClose, mode }: TaskModalProps) => {
     mode: 'onSubmit',
   });
 
-  console.log('test open');
-
   const handleTaskSubmit = (data: TaskValues) => {
     console.log(data);
     onClose();
@@ -113,6 +111,9 @@ const TaskModal = ({ onClose, mode }: TaskModalProps) => {
             </ul>
           </li>
           <li className='relative'>
+            <h3 className='mb-1 text-[12px] -tracking-[0.24px] text-text-theme/50'>
+              Deadline
+            </h3>
             <Controller
               control={control}
               name='deadline'

@@ -11,8 +11,8 @@
   padding: 18px;
 }
 
-.react-datepicker__month-container {
-}
+/* .react-datepicker__month-container {
+} */
 
 .react-datepicker__header {
   background-color: var(--color-header) !important;

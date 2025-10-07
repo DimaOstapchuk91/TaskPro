@@ -3,14 +3,23 @@ import ControlButtons from '../btn/ControlButtons/ControlButtons';
 import ColumnItem from '../ColumnItem/ColumnItem';
 import sprite from '../../assets/sprite.svg';
 import ColumnModal from '../modals/ColumnModal/ColumnModal';
+import { useState } from 'react';
+import TaskModal from '../modals/TaskModal/TaskModal';
+import Modal from '../modals/Modal';
 
 interface ColumnListProps {
   column: { id: string; title: string };
 }
 
 const ColumnList = ({ column }: ColumnListProps) => {
+  const [isAddTaskModal, setAddTaskModal] = useState<boolean>(false);
+
   const handleDellColumn = async () => {
     console.log('Виадалення колонки');
+  };
+
+  const handleCloseTaskModal = () => {
+    setAddTaskModal(false);
   };
 
   return (
@@ -37,6 +46,7 @@ const ColumnList = ({ column }: ColumnListProps) => {
       <button
         className='p-3.5 flex items-center gap-2 justify-center w-full !text-sm font-bold -tracking-[0.26px] bg-brand rounded-lg  text-text-dark hover:bg-hover'
         type='button'
+        onClick={() => setAddTaskModal(true)}
       >
         <span className='flex justify-center items-center rounded w-7 h-7 bg-text-dark'>
           <svg
@@ -49,6 +59,9 @@ const ColumnList = ({ column }: ColumnListProps) => {
         </span>
         Add another card
       </button>
+      <Modal isOpen={isAddTaskModal} onClose={handleCloseTaskModal}>
+        <TaskModal mode={'create'} onClose={handleCloseTaskModal} />
+      </Modal>
     </div>
   );
 };
