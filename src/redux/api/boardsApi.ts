@@ -1,53 +1,6 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { baseQueryWithReauth } from '../services/configApti';
-
-export type IconType =
-  | 'icon-star'
-  | 'icon-container'
-  | 'icon-puzzle'
-  | 'icon-project'
-  | 'icon-colors'
-  | 'icon-hexagon'
-  | 'icon-lightning'
-  | 'icon-loading';
-
-export type Board = {
-  id: number;
-  owner_id: number;
-  title: string;
-  icons: IconType;
-  background: string;
-  created_at: string;
-  updated_at: string;
-};
-
-export type BoardRequest = Omit<
-  Board,
-  'id' | 'owner_id' | 'created_at' | 'updated_at'
-> & {
-  background?: string;
-};
-
-export interface Task {
-  id: number;
-  column_id: number;
-  title: string;
-  description: string;
-  priority: 'High' | 'Medium' | 'Low' | 'Without';
-  deadline: string;
-  created_at: string;
-  updated_at: string;
-}
-
-export interface BoardsResponse {
-  id: number;
-  title: string;
-  columns: {
-    id: number;
-    title: string;
-    tasks: Task[];
-  }[];
-}
+import { Board, BoardRequest, BoardsResponse } from '../../types/boards.type';
 
 export const boardsApi = createApi({
   reducerPath: 'boardsApi',
