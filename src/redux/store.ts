@@ -11,9 +11,12 @@ import {
   REGISTER,
   Persistor,
 } from 'redux-persist';
-import { taskProApi } from './api/authApi';
+import { authApi } from './api/authApi';
 import { resourcesApi } from './api/resourcesApi';
 import { authReducer } from './slices/userSlice';
+import { boardsApi } from './api/boardsApi';
+import { columnsApi } from './api/columnsApi';
+import { tasksApi } from './api/tasksApi';
 
 const persistUserConfig = {
   key: 'userData',
@@ -26,15 +29,24 @@ const persistUserReducer = persistReducer(persistUserConfig, authReducer);
 export const store = configureStore({
   reducer: {
     user: persistUserReducer,
-    [taskProApi.reducerPath]: taskProApi.reducer,
+    [authApi.reducerPath]: authApi.reducer,
     [resourcesApi.reducerPath]: resourcesApi.reducer,
+    [boardsApi.reducerPath]: boardsApi.reducer,
+    [columnsApi.reducerPath]: columnsApi.reducer,
+    [tasksApi.reducerPath]: tasksApi.reducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware<{ serializableCheck: { ignoredActions: string[] } }>({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(taskProApi.middleware, resourcesApi.middleware),
+    }).concat(
+      authApi.middleware,
+      resourcesApi.middleware,
+      boardsApi.middleware,
+      columnsApi.middleware,
+      tasksApi.middleware
+    ),
 });
 
 export const persistor: Persistor = persistStore(store);

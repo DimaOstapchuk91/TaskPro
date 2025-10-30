@@ -7,7 +7,7 @@ import {
   LoginResponce,
 } from '../../types/user.type';
 
-export const taskProApi = createApi({
+export const authApi = createApi({
   reducerPath: 'taskProApi',
   baseQuery: baseQueryWithReauth,
   tagTypes: ['User'],
@@ -49,4 +49,4 @@ export const {
   useRegisterUserMutation,
   useLoginUserMutation,
   useLoggedOutMutation,
-} = taskProApi;
+} = authApi;

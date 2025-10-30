@@ -1,3 +1,5 @@
+import { Task } from './task.type';
+
 export type IconType =
   | 'icon-star'
   | 'icon-container'
@@ -24,17 +26,6 @@ export type BoardRequest = Omit<
 > & {
   background?: string;
 };
-
-export interface Task {
-  id: number;
-  column_id: number;
-  title: string;
-  description: string;
-  priority: 'High' | 'Medium' | 'Low' | 'Without';
-  deadline: string;
-  created_at: string;
-  updated_at: string;
-}
 
 export interface BoardsResponse {
   id: number;
