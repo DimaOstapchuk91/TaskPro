@@ -8,11 +8,9 @@ import { tasksApi } from '../api/tasksApi';
 
 export const resetApiMiddleware: Middleware = store => next => action => {
   if ((action as UnknownAction).type === setIsLoggedOut.type) {
-    store.dispatch(authApi.util.resetApiState());
-    store.dispatch(resourcesApi.util.resetApiState());
-    store.dispatch(boardsApi.util.resetApiState());
-    store.dispatch(columnsApi.util.resetApiState());
-    store.dispatch(tasksApi.util.resetApiState());
+    [authApi, resourcesApi, boardsApi, columnsApi, tasksApi].forEach(api => {
+      store.dispatch(api.util.resetApiState());
+    });
   }
 
   return next(action);

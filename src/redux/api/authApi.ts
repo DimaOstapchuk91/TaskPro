@@ -8,7 +8,7 @@ import {
 } from '../../types/user.type';
 
 export const authApi = createApi({
-  reducerPath: 'taskProApi',
+  reducerPath: 'authApi',
   baseQuery: baseQueryWithReauth,
   tagTypes: ['User'],
   endpoints: builder => ({
@@ -19,6 +19,7 @@ export const authApi = createApi({
       }),
       providesTags: ['User'],
     }),
+
     registerUser: builder.mutation<AuthRequest, AuthRequest>({
       query: body => ({
         url: 'auth/register',
@@ -26,6 +27,7 @@ export const authApi = createApi({
         body,
       }),
     }),
+
     loginUser: builder.mutation<LoginResponce, LoginQuery>({
       query: body => ({
         url: 'auth/login',
@@ -34,12 +36,12 @@ export const authApi = createApi({
       }),
       invalidatesTags: ['User'],
     }),
+
     loggedOut: builder.mutation<void, void>({
       query: () => ({
         url: 'auth/logout',
         method: 'POST',
       }),
-      invalidatesTags: ['User'],
     }),
   }),
 });

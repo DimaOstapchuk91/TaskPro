@@ -19,9 +19,9 @@ const LoggOutBtn = () => {
     try {
       await loggedOut().unwrap();
 
-      setIsOpenConfirmModal(false);
-
       dispatch(setIsLoggedOut());
+
+      setIsOpenConfirmModal(false);
     } catch (error) {
       console.log('Щось пішло не так ', error);
     }

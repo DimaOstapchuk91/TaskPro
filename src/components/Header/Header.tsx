@@ -5,9 +5,13 @@ import MobileSidebar from '../MobileSidebar/MobileSidebar';
 import { useGetUserByIdQuery } from '../../redux/api/authApi';
 import Modal from '../modals/Modal';
 import EditProfileModal from '../modals/EditProfileModal/EditProfileModal';
+import { useSelector } from 'react-redux';
+import { selectIsLoggedIn } from '../../redux/selectors/userSelectors';
 
 const Header = () => {
-  const { data } = useGetUserByIdQuery();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
+  const { data } = useGetUserByIdQuery(undefined, { skip: !isLoggedIn });
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isOpenEditModal, setIsOpenEditModal] = useState<boolean>(false);

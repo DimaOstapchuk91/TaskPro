@@ -42,12 +42,12 @@ export const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }).concat(
+      resetApiMiddleware,
       authApi.middleware,
       resourcesApi.middleware,
       boardsApi.middleware,
       columnsApi.middleware,
-      tasksApi.middleware,
-      resetApiMiddleware
+      tasksApi.middleware
     ),
 });
 
