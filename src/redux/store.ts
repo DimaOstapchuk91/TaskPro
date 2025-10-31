@@ -17,6 +17,7 @@ import { authReducer } from './slices/userSlice';
 import { boardsApi } from './api/boardsApi';
 import { columnsApi } from './api/columnsApi';
 import { tasksApi } from './api/tasksApi';
+import { resetApiMiddleware } from './middleware/resetApi';
 
 const persistUserConfig = {
   key: 'userData',
@@ -45,7 +46,8 @@ export const store = configureStore({
       resourcesApi.middleware,
       boardsApi.middleware,
       columnsApi.middleware,
-      tasksApi.middleware
+      tasksApi.middleware,
+      resetApiMiddleware
     ),
 });
 

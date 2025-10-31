@@ -3,15 +3,10 @@ import sprite from '../../assets/sprite.svg';
 
 import BoardModal from '../modals/BoardModal/BoardModal';
 import ControlButtons from '../btn/ControlButtons/ControlButtons';
-
-interface BoardTypes {
-  id: string;
-  title: string;
-  icon: string;
-}
+import { Board } from '../../types/boards.type';
 
 interface BoardListItemProps {
-  board: BoardTypes;
+  board: Board;
 }
 
 const BoardListItem = ({ board }: BoardListItemProps) => {
@@ -38,7 +33,7 @@ const BoardListItem = ({ board }: BoardListItemProps) => {
           width={18}
           height={18}
         >
-          <use href={`${sprite}#${board.icon}`} />
+          <use href={`${sprite}#${board.icons}`} />
         </svg>
         <p className='opacity-40 text-sm font-medium -tracking-[0.28px] group-[.active]:opacity-100'>
           {board.title}

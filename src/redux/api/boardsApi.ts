@@ -1,13 +1,18 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { baseQueryWithReauth } from '../services/configApti';
-import { Board, BoardRequest, BoardsResponse } from '../../types/boards.type';
+import {
+  Board,
+  BoardRequest,
+  BoardsResponse,
+  GetAllBoardsResponse,
+} from '../../types/boards.type';
 
 export const boardsApi = createApi({
   reducerPath: 'boardsApi',
   baseQuery: baseQueryWithReauth,
   tagTypes: ['Boards'],
   endpoints: builder => ({
-    getAllBoards: builder.query<Board[], void>({
+    getAllBoards: builder.query<GetAllBoardsResponse, void>({
       query: () => ({
         url: 'boards',
         method: 'GET',

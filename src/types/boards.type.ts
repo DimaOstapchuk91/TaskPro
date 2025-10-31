@@ -36,3 +36,9 @@ export interface BoardsResponse {
     tasks: Task[];
   }[];
 }
+
+export interface GetAllBoardsResponse {
+  status: number;
+  message: string;
+  data: Board[];
+}
