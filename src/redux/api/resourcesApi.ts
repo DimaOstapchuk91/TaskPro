@@ -1,21 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-
-interface CloudinaryData {
-  id: string;
-  filename: string;
-  url: string;
-}
-
-type CloudinaryBack = {
-  name: string;
-  desk?: CloudinaryData;
-  tab?: CloudinaryData;
-  mob?: CloudinaryData;
-  thumb?: CloudinaryData;
-};
+import { Background } from '../../types/boards.type';
 
 type Cloudinaryresponse = {
-  data: CloudinaryBack[];
+  data: Background[];
   message: string;
   status: number;
 };

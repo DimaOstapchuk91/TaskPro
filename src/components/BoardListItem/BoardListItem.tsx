@@ -33,7 +33,7 @@ const BoardListItem = ({ board }: BoardListItemProps) => {
           width={18}
           height={18}
         >
-          <use href={`${sprite}#${board.icons}`} />
+          <use href={`${sprite}#${board.icon}`} />
         </svg>
         <p className='opacity-40 text-sm font-medium -tracking-[0.28px] group-[.active]:opacity-100'>
           {board.title}

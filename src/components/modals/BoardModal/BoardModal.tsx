@@ -7,6 +7,8 @@ import {
   orderBoardSchema,
 } from '../../../utils/formValidation';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useCreateBoardMutation } from '../../../redux/api/boardsApi';
+import { IconType } from '../../../types/boards.type';
 
 interface BoardModalProps {
   onClose: () => void;
@@ -15,6 +17,7 @@ interface BoardModalProps {
 
 const BoardModal = ({ onClose, mode }: BoardModalProps) => {
   const { data, isLoading } = useGetResourcesQuery();
+  const [createBoard] = useCreateBoardMutation();
   const title = mode === 'create' ? 'New board' : 'Edit board';
   const buttonLabel = mode === 'create' ? 'Create' : 'Edit';
 
@@ -42,17 +45,26 @@ const BoardModal = ({ onClose, mode }: BoardModalProps) => {
     mode: 'onSubmit',
   });
 
-  const onSubmit = (result: BoardFormValues): void => {
+  const onSubmit = async (result: BoardFormValues): Promise<void> => {
     const selectedBg = result?.boardBg
       ? data?.data.find(bg => bg.name === result.boardBg)
       : null;
 
     const formData = {
       title: result.boardTitle,
-      icon: result.boardIcon,
-      bg: selectedBg || null,
+      icon: result.boardIcon as IconType,
+      background: selectedBg || null,
     };
+
+    console.log(typeof formData.background?.desk.id);
+
+    try {
+      await createBoard(formData).unwrap();
+    } catch (error) {
+      console.log(error);
+    }
     console.log(formData);
+
     onClose();
   };
 

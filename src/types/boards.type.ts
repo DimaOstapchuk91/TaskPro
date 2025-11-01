@@ -10,12 +10,26 @@ export type IconType =
   | 'icon-lightning'
   | 'icon-loading';
 
+interface ImageVariant {
+  filename: string;
+  id: string;
+  url: string;
+}
+
+export interface Background {
+  name: string;
+  mob: ImageVariant;
+  tab: ImageVariant;
+  desk: ImageVariant;
+  thumb: ImageVariant;
+}
+
 export type Board = {
   id: number;
   owner_id: number;
   title: string;
-  icons: IconType;
-  background: string;
+  icon: IconType;
+  background: Background | null;
   created_at: string;
   updated_at: string;
 };
@@ -24,7 +38,7 @@ export type BoardRequest = Omit<
   Board,
   'id' | 'owner_id' | 'created_at' | 'updated_at'
 > & {
-  background?: string;
+  background?: Background | null;
 };
 
 export interface BoardsResponse {
