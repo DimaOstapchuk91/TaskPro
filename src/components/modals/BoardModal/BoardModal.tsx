@@ -21,8 +21,6 @@ const BoardModal = ({ onClose, mode }: BoardModalProps) => {
   const title = mode === 'create' ? 'New board' : 'Edit board';
   const buttonLabel = mode === 'create' ? 'Create' : 'Edit';
 
-  // console.log(isLoading);
-
   const icons = [
     'icon-star',
     'icon-container',
@@ -60,12 +58,11 @@ const BoardModal = ({ onClose, mode }: BoardModalProps) => {
 
     try {
       await createBoard(formData).unwrap();
+
+      onClose();
     } catch (error) {
       console.log(error);
     }
-    console.log(formData);
-
-    onClose();
   };
 
   return (
