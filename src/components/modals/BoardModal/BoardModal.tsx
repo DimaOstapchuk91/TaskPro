@@ -7,17 +7,22 @@ import {
   orderBoardSchema,
 } from '../../../utils/formValidation';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useCreateBoardMutation } from '../../../redux/api/boardsApi';
+import {
+  useCreateBoardMutation,
+  useEditBoardMutation,
+} from '../../../redux/api/boardsApi';
 import { IconType } from '../../../types/boards.type';
 
 interface BoardModalProps {
   onClose: () => void;
   mode: 'create' | 'edit';
+  id?: number;
 }
 
-const BoardModal = ({ onClose, mode }: BoardModalProps) => {
+const BoardModal = ({ onClose, mode, id }: BoardModalProps) => {
   const { data, isLoading } = useGetResourcesQuery();
   const [createBoard] = useCreateBoardMutation();
+  const [editBoard] = useEditBoardMutation();
   const title = mode === 'create' ? 'New board' : 'Edit board';
   const buttonLabel = mode === 'create' ? 'Create' : 'Edit';
 
@@ -54,12 +59,16 @@ const BoardModal = ({ onClose, mode }: BoardModalProps) => {
       background: selectedBg || null,
     };
 
-    console.log(typeof formData.background?.desk.id);
-
     try {
-      await createBoard(formData).unwrap();
+      if (mode === 'create') {
+        await createBoard(formData).unwrap();
 
-      onClose();
+        onClose();
+      } else if (mode === 'edit' && id !== undefined) {
+        await editBoard({ boardId: id, body: formData }).unwrap();
+
+        onClose();
+      }
     } catch (error) {
       console.log(error);
     }

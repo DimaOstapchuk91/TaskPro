@@ -6,9 +6,10 @@ import sprite from '../../../assets/sprite.svg';
 interface ColumnModalProps {
   onClose: () => void;
   mode: string;
+  id?: number;
 }
 
-const ColumnModal = ({ onClose, mode }: ColumnModalProps) => {
+const ColumnModal = ({ onClose, mode, id }: ColumnModalProps) => {
   const title = mode === 'create' ? 'Add column' : 'Edit column';
 
   const { handleSubmit, register } = useForm<ColumnValues>({

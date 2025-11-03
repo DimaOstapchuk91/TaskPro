@@ -39,12 +39,10 @@ export const boardsApi = createApi({
       {
         query: ({ boardId, body }) => ({
           url: `boards/${boardId}`,
-          method: 'PUT',
+          method: 'PATCH',
           body,
         }),
-        invalidatesTags: (result, error, arg) => [
-          { type: 'Boards', id: arg.boardId },
-        ],
+        invalidatesTags: ['Boards'],
       }
     ),
     deleteBoard: builder.mutation<void, { boardId: number }>({

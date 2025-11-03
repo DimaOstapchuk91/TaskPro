@@ -9,9 +9,10 @@ import { useState } from 'react';
 interface TaskModalProps {
   onClose: () => void;
   mode: string;
+  id?: number;
 }
 
-const TaskModal = ({ onClose, mode }: TaskModalProps) => {
+const TaskModal = ({ onClose, mode, id }: TaskModalProps) => {
   const title = mode === 'create' ? 'Add card' : 'Edit card';
   const buttonText = mode === 'create' ? 'Add' : 'Edit';
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());

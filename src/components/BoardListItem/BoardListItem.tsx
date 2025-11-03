@@ -45,6 +45,7 @@ const BoardListItem = ({ board }: BoardListItemProps) => {
             confirmAction={handleDellBoard}
             confirmTitle={'Delete Board?'}
             CreateModal={BoardModal}
+            id={board.id}
           />
         </div>
       )}
