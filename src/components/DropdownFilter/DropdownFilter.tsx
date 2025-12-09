@@ -2,10 +2,15 @@ import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import sprite from '../../assets/sprite.svg';
 import clsx from 'clsx';
 
-const DropdownFilter = () => {
+interface DropdownFilterProps {
+  onSelect: (filter: string) => void;
+}
+
+const DropdownFilter = ({ onSelect }: DropdownFilterProps) => {
   const columns = ['High', 'Medium', 'Low', 'Without'];
 
   const handleClickFilter = (filter: string) => {
+    onSelect(filter);
     console.log('Filter Data:', filter);
   };
 

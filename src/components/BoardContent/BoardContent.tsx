@@ -1,19 +1,14 @@
-import { useGetBoardByIdQuery } from '../../redux/api/boardsApi';
+// import { useGetBoardByIdQuery } from '../../redux/api/boardsApi';
+import { Column } from '../../types/culumn.type';
 import AddColumnBtn from '../btn/AddColumnBtn/AddColumnBtn';
 import ColumnList from '../ColumnList/ColumnList';
 
 interface BoardContentProps {
-  id: string;
+  columns: Column[];
 }
 
-const BoardContent = ({ id }: BoardContentProps) => {
-  console.log(Number(id));
-  const { data, isLoading, isError } = useGetBoardByIdQuery(Number(id));
-
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error loading board</div>;
-
-  const columns = data?.data?.columns ?? [];
+const BoardContent = ({ columns }: BoardContentProps) => {
+  // const columns = data?.data?.columns ?? [];
 
   return (
     <div className='h-full w-full'>
