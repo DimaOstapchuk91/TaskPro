@@ -1,4 +1,3 @@
-import { mockTasks } from '../../utils/mockData';
 import ControlButtons from '../btn/ControlButtons/ControlButtons';
 import ColumnItem from '../ColumnItem/ColumnItem';
 import sprite from '../../assets/sprite.svg';
@@ -6,13 +5,18 @@ import ColumnModal from '../modals/ColumnModal/ColumnModal';
 import { useState } from 'react';
 import TaskModal from '../modals/TaskModal/TaskModal';
 import Modal from '../modals/Modal';
+import { Column } from '../../types/culumn.type';
 
 interface ColumnListProps {
-  column: { id: string; title: string };
+  column: Column;
 }
 
 const ColumnList = ({ column }: ColumnListProps) => {
   const [isAddTaskModal, setAddTaskModal] = useState<boolean>(false);
+
+  console.log('column props', column);
+
+  const tasks = column.tasks ?? [];
 
   const handleDellColumn = async () => {
     console.log('Виадалення колонки');
@@ -37,11 +41,9 @@ const ColumnList = ({ column }: ColumnListProps) => {
         </div>
       </div>
       <ul className=' flex  flex-col pr-2  -mr-4 gap-2 mb-3.5 h-[calc(100vh-314px)]  overflow-y-auto overflow-hidden  scrollbar-thumb-bg scrollbar-track-text-theme/10 scrollbar-thumb-rounded-full scrollbar-w-2 scrollbar scrollbar-track-rounded-full'>
-        {mockTasks
-          .filter(item => item.columnId === column.id)
-          .map(item => (
-            <ColumnItem key={item.id} taskData={item} />
-          ))}
+        {tasks.map(item => (
+          <ColumnItem key={item.id} taskData={item} />
+        ))}
       </ul>
       <button
         className='p-3.5 flex items-center gap-2 justify-center w-full !text-sm font-bold -tracking-[0.26px] bg-brand rounded-lg  text-text-dark hover:bg-hover'

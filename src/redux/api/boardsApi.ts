@@ -19,7 +19,7 @@ export const boardsApi = createApi({
       }),
       providesTags: ['Boards'],
     }),
-    getBoardById: builder.query<BoardsResponse, { boardId: number }>({
+    getBoardById: builder.query<BoardsResponse, number>({
       query: boardId => ({
         url: `boards/${boardId}`,
         method: 'GET',

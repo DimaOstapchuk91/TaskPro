@@ -1,4 +1,4 @@
-import { Task } from './task.type';
+import { Column } from './culumn.type';
 
 export type IconType =
   | 'icon-star'
@@ -42,13 +42,9 @@ export type BoardRequest = Omit<
 };
 
 export interface BoardsResponse {
-  id: number;
-  title: string;
-  columns: {
-    id: number;
-    title: string;
-    tasks: Task[];
-  }[];
+  data: { id: number; title: string; columns: Column[] };
+  status: number;
+  message: string;
 }
 
 export interface GetAllBoardsResponse {

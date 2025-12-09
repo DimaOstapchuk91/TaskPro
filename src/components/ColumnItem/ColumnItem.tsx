@@ -2,16 +2,10 @@ import clsx from 'clsx';
 import ControlButtons from '../btn/ControlButtons/ControlButtons';
 import TaskModal from '../modals/TaskModal/TaskModal';
 import DropdownProgres from '../DropdownProgres/DropdownProgres';
+import { Task } from '../../types/task.type';
 
 interface ColumnItemProps {
-  taskData: {
-    id: string;
-    title: string;
-    description: string;
-    priority: string;
-    deadline: string;
-    columnId: string;
-  };
+  taskData: Task;
 }
 
 const ColumnItem = ({ taskData }: ColumnItemProps) => {
