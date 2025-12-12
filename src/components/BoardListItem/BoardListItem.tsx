@@ -4,6 +4,7 @@ import sprite from '../../assets/sprite.svg';
 import BoardModal from '../modals/BoardModal/BoardModal';
 import ControlButtons from '../btn/ControlButtons/ControlButtons';
 import { Board } from '../../types/boards.type';
+import { useDeleteBoardMutation } from '../../redux/api/boardsApi';
 
 interface BoardListItemProps {
   board: Board;
@@ -12,8 +13,14 @@ interface BoardListItemProps {
 const BoardListItem = ({ board }: BoardListItemProps) => {
   const match = useMatch(`/home/${board.id}`);
 
+  const [deleteBoard] = useDeleteBoardMutation();
+
   const handleDellBoard = async () => {
-    console.log('Видаляємо дошку');
+    try {
+      await deleteBoard({ boardId: board.id }).unwrap();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

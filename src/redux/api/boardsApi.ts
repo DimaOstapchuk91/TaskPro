@@ -1,16 +1,12 @@
-import { createApi } from '@reduxjs/toolkit/query/react';
-import { baseQueryWithReauth } from '../services/configApti';
 import {
   Board,
   BoardRequest,
   BoardsResponse,
   GetAllBoardsResponse,
 } from '../../types/boards.type';
+import { rootApi } from './rootApi';
 
-export const boardsApi = createApi({
-  reducerPath: 'boardsApi',
-  baseQuery: baseQueryWithReauth,
-  tagTypes: ['Boards'],
+export const boardsApi = rootApi.injectEndpoints({
   endpoints: builder => ({
     getAllBoards: builder.query<GetAllBoardsResponse, void>({
       query: () => ({
@@ -24,7 +20,9 @@ export const boardsApi = createApi({
         url: `boards/${boardId}`,
         method: 'GET',
       }),
-      providesTags: ['Boards'],
+      providesTags: (result, error, id) => [
+        { type: 'OneBoard', id: String(id) },
+      ],
     }),
 
     createBoard: builder.mutation<Board, BoardRequest>({
@@ -50,9 +48,10 @@ export const boardsApi = createApi({
         url: `boards/${boardId}`,
         method: 'DELETE',
       }),
-      invalidatesTags: (result, error, arg) => [
-        { type: 'Boards', id: arg.boardId },
-      ],
+      invalidatesTags: (result, error, arg) => {
+        console.log('dell board', arg.boardId);
+        return ['Boards'];
+      },
     }),
   }),
 });

@@ -39,11 +39,7 @@ const ScreensPage = () => {
       </div>
 
       <div className='flex-1 w-full h-full overflow-x-auto overflow-y-hidden scrollbar-thumb-bg scrollbar-track-text-theme/10 scrollbar-thumb-rounded-full scrollbar-h-2 scrollbar scrollbar-track-rounded-full'>
-        {boardId ? (
-          <BoardContent columns={filteredColumns} />
-        ) : (
-          <NoBoardSelected />
-        )}
+        <BoardContent columns={filteredColumns} boardId={Number(boardId)} />
       </div>
     </section>
   );

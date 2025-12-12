@@ -14,10 +14,9 @@ import {
 import { authApi } from './api/authApi';
 import { resourcesApi } from './api/resourcesApi';
 import { authReducer } from './slices/userSlice';
-import { boardsApi } from './api/boardsApi';
-import { columnsApi } from './api/columnsApi';
-import { tasksApi } from './api/tasksApi';
+
 import { resetApiMiddleware } from './middleware/resetApi';
+import { rootApi } from './api/rootApi';
 
 const persistUserConfig = {
   key: 'userData',
@@ -32,9 +31,7 @@ export const store = configureStore({
     user: persistUserReducer,
     [authApi.reducerPath]: authApi.reducer,
     [resourcesApi.reducerPath]: resourcesApi.reducer,
-    [boardsApi.reducerPath]: boardsApi.reducer,
-    [columnsApi.reducerPath]: columnsApi.reducer,
-    [tasksApi.reducerPath]: tasksApi.reducer,
+    [rootApi.reducerPath]: rootApi.reducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware<{ serializableCheck: { ignoredActions: string[] } }>({
@@ -42,12 +39,10 @@ export const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }).concat(
-      resetApiMiddleware,
       authApi.middleware,
       resourcesApi.middleware,
-      boardsApi.middleware,
-      columnsApi.middleware,
-      tasksApi.middleware
+      rootApi.middleware,
+      resetApiMiddleware
     ),
 });
 

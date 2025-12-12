@@ -1,15 +1,13 @@
-// import { useGetBoardByIdQuery } from '../../redux/api/boardsApi';
 import { Column } from '../../types/culumn.type';
 import AddColumnBtn from '../btn/AddColumnBtn/AddColumnBtn';
 import ColumnList from '../ColumnList/ColumnList';
 
 interface BoardContentProps {
   columns: Column[];
+  boardId: number;
 }
 
-const BoardContent = ({ columns }: BoardContentProps) => {
-  // const columns = data?.data?.columns ?? [];
-
+const BoardContent = ({ columns, boardId }: BoardContentProps) => {
   return (
     <div className='h-full w-full'>
       <div className='flex flex-nowrap gap-8.5 w-max h-full'>
@@ -17,7 +15,7 @@ const BoardContent = ({ columns }: BoardContentProps) => {
           <ColumnList key={column.id} column={column} />
         ))}
 
-        <AddColumnBtn />
+        <AddColumnBtn boardId={boardId} />
       </div>
     </div>
   );

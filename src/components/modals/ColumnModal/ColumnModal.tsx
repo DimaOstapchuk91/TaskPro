@@ -2,24 +2,47 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { ColumnValues, orderColumnShema } from '../../../utils/formValidation';
 import { useForm } from 'react-hook-form';
 import sprite from '../../../assets/sprite.svg';
+import {
+  useCreateColumnMutation,
+  useEditColumnMutation,
+} from '../../../redux/api/columnsApi';
 
 interface ColumnModalProps {
   onClose: () => void;
-  mode: string;
+  mode: 'create' | 'edit';
   id?: number;
+  boardId: number;
 }
 
-const ColumnModal = ({ onClose, mode, id }: ColumnModalProps) => {
+const ColumnModal = ({ onClose, mode, id, boardId }: ColumnModalProps) => {
   const title = mode === 'create' ? 'Add column' : 'Edit column';
+
+  const [createColumn] = useCreateColumnMutation();
+  const [editColumn] = useEditColumnMutation();
 
   const { handleSubmit, register } = useForm<ColumnValues>({
     resolver: yupResolver(orderColumnShema),
     mode: 'onSubmit',
   });
 
-  const handleColumnSubmit = (data: ColumnValues): void => {
-    console.log(data);
-    onClose();
+  console.log(typeof boardId);
+  console.log('id modal', boardId);
+
+  const handleColumnSubmit = async (data: ColumnValues) => {
+    try {
+      if (mode === 'create') {
+        await createColumn({ boardId, title: data.columnTitle }).unwrap();
+      } else if (mode === 'edit' && id) {
+        await editColumn({
+          boardId,
+          columnId: id,
+          title: data.columnTitle,
+        }).unwrap();
+      }
+      onClose();
+    } catch (err) {
+      console.error('Error submitting column:', err);
+    }
   };
   return (
     <div className='w-full p-8 bg-header max-w-[335px]  rounded-lg md:max-w-[350px]'>

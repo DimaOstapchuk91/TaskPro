@@ -1,11 +1,7 @@
-import { createApi } from '@reduxjs/toolkit/query/react';
-import { baseQueryWithReauth } from '../services/configApti';
 import { Task, TaskRequest } from '../../types/task.type';
+import { rootApi } from './rootApi';
 
-export const tasksApi = createApi({
-  reducerPath: 'tasksApi',
-  baseQuery: baseQueryWithReauth,
-  tagTypes: ['Boards', 'Columns', 'Tasks'],
+export const tasksApi = rootApi.injectEndpoints({
   endpoints: builder => ({
     createTask: builder.mutation<
       Task,
@@ -21,7 +17,7 @@ export const tasksApi = createApi({
         body,
       }),
       invalidatesTags: (result, error, arg) => [
-        { type: 'Boards', id: arg.boardId },
+        { type: 'OneBoard', id: String(arg.boardId) },
       ],
     }),
     editTask: builder.mutation<
@@ -39,7 +35,7 @@ export const tasksApi = createApi({
         body,
       }),
       invalidatesTags: (result, error, arg) => [
-        { type: 'Boards', id: arg.boardId },
+        { type: 'OneBoard', id: String(arg.boardId) },
       ],
     }),
     deleteTask: builder.mutation<
@@ -51,7 +47,7 @@ export const tasksApi = createApi({
         method: 'DELETE',
       }),
       invalidatesTags: (result, error, arg) => [
-        { type: 'Boards', id: arg.boardId },
+        { type: 'OneBoard', id: String(arg.boardId) },
       ],
     }),
   }),

@@ -3,7 +3,11 @@ import sprite from '../../../assets/sprite.svg';
 import Modal from '../../modals/Modal';
 import ColumnModal from '../../modals/ColumnModal/ColumnModal';
 
-const AddColumnBtn = () => {
+interface AddColumnBtnProps {
+  boardId: number;
+}
+
+const AddColumnBtn = ({ boardId }: AddColumnBtnProps) => {
   const [isOpenCreateModal, setIsOpenCreateModal] = useState<boolean>(false);
 
   const handleCloseCreateModal = () => {
@@ -29,7 +33,11 @@ const AddColumnBtn = () => {
         <p className='text-sm text-text-theme'>Add another column</p>
       </button>
       <Modal isOpen={isOpenCreateModal} onClose={handleCloseCreateModal}>
-        <ColumnModal onClose={handleCloseCreateModal} mode={'create'} />
+        <ColumnModal
+          onClose={handleCloseCreateModal}
+          mode={'create'}
+          boardId={boardId}
+        />
       </Modal>
     </>
   );
