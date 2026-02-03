@@ -13,6 +13,10 @@ interface BoardListItemProps {
 const BoardListItem = ({ board }: BoardListItemProps) => {
   const match = useMatch(`/home/${board.id}`);
 
+  const BoardEditModal = ({ onClose }: { onClose: () => void }) => (
+    <BoardModal onClose={onClose} mode='edit' boardId={board.id} />
+  );
+
   const [deleteBoard] = useDeleteBoardMutation();
 
   const handleDellBoard = async () => {
@@ -51,8 +55,7 @@ const BoardListItem = ({ board }: BoardListItemProps) => {
           <ControlButtons
             confirmAction={handleDellBoard}
             confirmTitle={'Delete Board?'}
-            CreateModal={BoardModal}
-            id={board.id}
+            CreateModal={BoardEditModal}
           />
         </div>
       )}

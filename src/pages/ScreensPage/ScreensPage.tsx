@@ -1,9 +1,9 @@
 import { useParams } from 'react-router-dom';
 import NoBoardSelected from '../../components/NoBoardSelected/NoBoardSelected';
-import BoardContent from '../../components/BoardContent/BoardContent';
 import DropdownFilter from '../../components/DropdownFilter/DropdownFilter';
 import { useGetBoardByIdQuery } from '../../redux/api/boardsApi';
 import { useMemo, useState } from 'react';
+import ColumnList from '../../components/ColumnList/ColumnList';
 
 const ScreensPage = () => {
   const { boardId } = useParams<string>();
@@ -39,7 +39,7 @@ const ScreensPage = () => {
       </div>
 
       <div className='flex-1 w-full h-full overflow-x-auto overflow-y-hidden scrollbar-thumb-bg scrollbar-track-text-theme/10 scrollbar-thumb-rounded-full scrollbar-h-2 scrollbar scrollbar-track-rounded-full'>
-        <BoardContent columns={filteredColumns} boardId={Number(boardId)} />
+        <ColumnList columns={filteredColumns} boardId={Number(boardId)} />
       </div>
     </section>
   );

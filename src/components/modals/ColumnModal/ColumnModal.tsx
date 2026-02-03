@@ -25,8 +25,7 @@ const ColumnModal = ({ onClose, mode, id, boardId }: ColumnModalProps) => {
     mode: 'onSubmit',
   });
 
-  console.log(typeof boardId);
-  console.log('id modal', boardId);
+  console.log('id modal', id);
 
   const handleColumnSubmit = async (data: ColumnValues) => {
     try {
@@ -75,7 +74,7 @@ const ColumnModal = ({ onClose, mode, id, boardId }: ColumnModalProps) => {
               <use href={`${sprite}#icon-plus`}></use>
             </svg>
           </span>
-          Add
+          {mode === 'create' ? 'Add Column' : 'Save Changes'}
         </button>
       </form>
     </div>

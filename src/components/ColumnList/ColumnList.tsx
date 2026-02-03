@@ -1,69 +1,22 @@
-import ControlButtons from '../btn/ControlButtons/ControlButtons';
-import ColumnItem from '../ColumnItem/ColumnItem';
-import sprite from '../../assets/sprite.svg';
-import ColumnModal from '../modals/ColumnModal/ColumnModal';
-import { useState } from 'react';
-import TaskModal from '../modals/TaskModal/TaskModal';
-import Modal from '../modals/Modal';
 import { Column } from '../../types/culumn.type';
+import AddColumnBtn from '../btn/AddColumnBtn/AddColumnBtn';
+import ColumnListItem from '../ColumnListItem/ColumnListItem';
 
-interface ColumnListProps {
-  column: Column;
+interface BoardContentProps {
+  columns: Column[];
+  boardId: number;
 }
 
-const ColumnList = ({ column }: ColumnListProps) => {
-  const [isAddTaskModal, setAddTaskModal] = useState<boolean>(false);
-
-  console.log('column props', column);
-
-  const tasks = column.tasks ?? [];
-
-  const handleDellColumn = async () => {
-    console.log('Виадалення колонки');
-  };
-
-  const handleCloseTaskModal = () => {
-    setAddTaskModal(false);
-  };
-
+const ColumnList = ({ columns, boardId }: BoardContentProps) => {
   return (
-    <div className=' w-[335px]  snap-center flex flex-col'>
-      <div className='relative  px-5 py-4.5 mb-3.5 bg-bg w-full rounded-lg '>
-        <h2 className='text-sm font-medium -tracking-[0.28px]'>
-          {column.title}
-        </h2>
-        <div className='absolute top-1/2 -translate-y-1/2 right-5 flex gap-2 '>
-          <ControlButtons
-            confirmAction={handleDellColumn}
-            confirmTitle={'Delete column?'}
-            CreateModal={ColumnModal}
-          />
-        </div>
-      </div>
-      <ul className=' flex  flex-col pr-2  -mr-4 gap-2 mb-3.5 h-[calc(100vh-314px)]  overflow-y-auto overflow-hidden  scrollbar-thumb-bg scrollbar-track-text-theme/10 scrollbar-thumb-rounded-full scrollbar-w-2 scrollbar scrollbar-track-rounded-full'>
-        {tasks.map(item => (
-          <ColumnItem key={item.id} taskData={item} />
+    <div className='h-full w-full'>
+      <div className='flex flex-nowrap gap-8.5 w-max h-full'>
+        {columns.map(column => (
+          <ColumnListItem key={column.id} column={column} boardId={boardId} />
         ))}
-      </ul>
-      <button
-        className='p-3.5 flex items-center gap-2 justify-center w-full !text-sm font-bold -tracking-[0.26px] bg-brand rounded-lg  text-text-dark hover:bg-hover'
-        type='button'
-        onClick={() => setAddTaskModal(true)}
-      >
-        <span className='flex justify-center items-center rounded w-7 h-7 bg-text-dark'>
-          <svg
-            width='14'
-            height='14'
-            className='stroke-text-theme fill-transparent'
-          >
-            <use href={`${sprite}#icon-plus`}></use>
-          </svg>
-        </span>
-        Add another card
-      </button>
-      <Modal isOpen={isAddTaskModal} onClose={handleCloseTaskModal}>
-        <TaskModal mode={'create'} onClose={handleCloseTaskModal} />
-      </Modal>
+
+        <AddColumnBtn boardId={boardId} />
+      </div>
     </div>
   );
 };

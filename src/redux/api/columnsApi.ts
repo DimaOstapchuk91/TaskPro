@@ -25,7 +25,7 @@ export const columnsApi = rootApi.injectEndpoints({
     >({
       query: ({ boardId, columnId, title }) => ({
         url: `boards/${boardId}/columns/${columnId}`,
-        method: 'PUT',
+        method: 'PATCH',
         body: { title },
       }),
       invalidatesTags: (result, error, arg) => {

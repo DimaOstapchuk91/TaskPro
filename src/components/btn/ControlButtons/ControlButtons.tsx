@@ -7,18 +7,15 @@ interface ControlButtonsProps {
   CreateModal: React.ComponentType<{
     onClose: () => void;
     mode: 'create' | 'edit';
-    id?: number;
   }>;
   confirmTitle: string;
   confirmAction: () => void;
-  id?: number;
 }
 
 const ControlButtons = ({
   CreateModal,
   confirmTitle,
   confirmAction,
-  id,
 }: ControlButtonsProps) => {
   const [isOpenCreateModal, setIsOpenCreateModal] = useState<boolean>(false);
   const [isOpenConfirmModal, setIsOpenConfirmModal] = useState<boolean>(false);
@@ -60,7 +57,7 @@ const ControlButtons = ({
         </svg>
       </button>
       <Modal isOpen={isOpenCreateModal} onClose={handleCloseCreateModal}>
-        <CreateModal onClose={handleCloseCreateModal} mode={'edit'} id={id} />
+        <CreateModal onClose={handleCloseCreateModal} mode={'edit'} />
       </Modal>
       <Modal isOpen={isOpenConfirmModal} onClose={handleCloseConfirmModal}>
         <ConfirmModal

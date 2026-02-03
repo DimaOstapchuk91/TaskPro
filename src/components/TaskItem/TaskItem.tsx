@@ -6,9 +6,21 @@ import { Task } from '../../types/task.type';
 
 interface ColumnItemProps {
   taskData: Task;
+  boardId: number;
+  columnId: number;
 }
 
-const ColumnItem = ({ taskData }: ColumnItemProps) => {
+const TaskItem = ({ taskData, boardId, columnId }: ColumnItemProps) => {
+  const taskEditModal = ({ onClose }: { onClose: () => void }) => (
+    <TaskModal
+      onClose={onClose}
+      mode='edit'
+      boardId={boardId}
+      columnId={columnId}
+      taskId={taskData.id}
+    />
+  );
+
   const handleDellTask = async () => {
     console.log('Видалення завдання');
   };
@@ -62,11 +74,11 @@ const ColumnItem = ({ taskData }: ColumnItemProps) => {
           <ControlButtons
             confirmTitle={'Delete Task?'}
             confirmAction={handleDellTask}
-            CreateModal={TaskModal}
+            CreateModal={taskEditModal}
           />
         </div>
       </div>
     </div>
   );
 };
-export default ColumnItem;
+export default TaskItem;

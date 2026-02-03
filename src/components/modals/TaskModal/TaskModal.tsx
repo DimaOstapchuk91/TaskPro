@@ -9,10 +9,18 @@ import { useState } from 'react';
 interface TaskModalProps {
   onClose: () => void;
   mode: string;
-  id?: number;
+  taskId?: number;
+  boardId: number;
+  columnId: number;
 }
 
-const TaskModal = ({ onClose, mode, id }: TaskModalProps) => {
+const TaskModal = ({
+  onClose,
+  mode,
+  taskId,
+  boardId,
+  columnId,
+}: TaskModalProps) => {
   const title = mode === 'create' ? 'Add card' : 'Edit card';
   const buttonText = mode === 'create' ? 'Add' : 'Edit';
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
@@ -30,7 +38,7 @@ const TaskModal = ({ onClose, mode, id }: TaskModalProps) => {
   });
 
   const handleTaskSubmit = (data: TaskValues) => {
-    console.log(data);
+    console.log([columnId, boardId, taskId, data]);
     onClose();
   };
   return (

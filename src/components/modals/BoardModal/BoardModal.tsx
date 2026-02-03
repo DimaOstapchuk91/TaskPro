@@ -16,10 +16,10 @@ import { IconType } from '../../../types/boards.type';
 interface BoardModalProps {
   onClose: () => void;
   mode: 'create' | 'edit';
-  id?: number;
+  boardId: number;
 }
 
-const BoardModal = ({ onClose, mode, id }: BoardModalProps) => {
+const BoardModal = ({ onClose, mode, boardId }: BoardModalProps) => {
   const { data, isLoading } = useGetResourcesQuery();
   const [createBoard] = useCreateBoardMutation();
   const [editBoard] = useEditBoardMutation();
@@ -64,8 +64,8 @@ const BoardModal = ({ onClose, mode, id }: BoardModalProps) => {
         await createBoard(formData).unwrap();
 
         onClose();
-      } else if (mode === 'edit' && id !== undefined) {
-        await editBoard({ boardId: id, body: formData }).unwrap();
+      } else if (mode === 'edit' && boardId !== undefined) {
+        await editBoard({ boardId: boardId, body: formData }).unwrap();
 
         onClose();
       }
