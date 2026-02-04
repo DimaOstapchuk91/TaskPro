@@ -7,7 +7,7 @@ import { setIsLoggedOut } from '../../../redux/slices/userSlice';
 import ConfirmModal from '../../modals/ConfirmModal/ConfirmModal';
 
 const LoggOutBtn = () => {
-  const [loggedOut] = useLoggedOutMutation();
+  const [loggedOut, { isLoading }] = useLoggedOutMutation();
   const [isOpenConfirmModal, setIsOpenConfirmModal] = useState<boolean>(false);
   const dispatch = useDispatch();
 
@@ -42,8 +42,9 @@ const LoggOutBtn = () => {
       <Modal isOpen={isOpenConfirmModal} onClose={handleCloseConfirmModal}>
         <ConfirmModal
           title={'You want to leave?'}
-          action={handleLoggedOut}
-          onClose={handleCloseConfirmModal}
+          onConfirm={handleLoggedOut}
+          onCancel={handleCloseConfirmModal}
+          isLoading={isLoading}
         />
       </Modal>
     </>

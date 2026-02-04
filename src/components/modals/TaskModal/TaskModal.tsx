@@ -5,6 +5,10 @@ import sprite from '../../../assets/sprite.svg';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useState } from 'react';
+import {
+  useCreateTaskMutation,
+  useEditTaskMutation,
+} from '../../../redux/api/tasksApi';
 
 interface TaskModalProps {
   onClose: () => void;
@@ -23,7 +27,13 @@ const TaskModal = ({
 }: TaskModalProps) => {
   const title = mode === 'create' ? 'Add card' : 'Edit card';
   const buttonText = mode === 'create' ? 'Add' : 'Edit';
+
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+
+  const [createTask, { isLoading: isCreating }] = useCreateTaskMutation();
+  const [editTask, { isLoading: isEditing }] = useEditTaskMutation();
+
+  const isSubmitting = isCreating || isEditing;
 
   const formatDate = (date: Date) =>
     date.toLocaleDateString('en-US', {
@@ -32,14 +42,38 @@ const TaskModal = ({
       day: 'numeric',
     });
 
-  const { handleSubmit, register, control } = useForm<TaskValues>({
+  const { handleSubmit, register, control, watch } = useForm<TaskValues>({
     resolver: yupResolver(orderTaskShema),
     mode: 'onSubmit',
   });
 
-  const handleTaskSubmit = (data: TaskValues) => {
-    console.log([columnId, boardId, taskId, data]);
-    onClose();
+  const priority = watch('priority');
+  console.log('WATCH PRIORITY:', priority);
+
+  const handleTaskSubmit = async (data: TaskValues) => {
+    console.log(['test body', columnId, boardId, taskId, data]);
+
+    try {
+      if (mode === 'create') {
+        await createTask({
+          boardId: boardId,
+          columnId: columnId,
+          body: data,
+        }).unwrap();
+
+        onClose();
+      } else if (
+        mode === 'edit' &&
+        boardId !== undefined &&
+        taskId !== undefined
+      ) {
+        await editTask({ boardId, columnId, taskId, body: data }).unwrap();
+
+        onClose();
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div className='w-full p-8 bg-header max-w-[335px]  rounded-lg md:max-w-[350px]'>
@@ -77,7 +111,7 @@ const TaskModal = ({
                 <label>
                   <input
                     type='radio'
-                    value='Low'
+                    value='High'
                     {...register('priority')}
                     className='hidden peer'
                   />
@@ -88,7 +122,7 @@ const TaskModal = ({
                 <label>
                   <input
                     type='radio'
-                    value='Medium'
+                    value='Low'
                     {...register('priority')}
                     className='hidden peer'
                   />
@@ -99,7 +133,7 @@ const TaskModal = ({
                 <label>
                   <input
                     type='radio'
-                    value='High'
+                    value='Medium'
                     {...register('priority')}
                     className='hidden peer'
                   />
@@ -174,6 +208,7 @@ const TaskModal = ({
         <button
           className='flex items-center justify-center gap-2 bg-brand !text-sm font-medium w-full rounded-lg p-3.5 text-text-dark hover:bg-hover'
           type='submit'
+          disabled={isSubmitting}
         >
           {' '}
           <span className='flex justify-center items-center rounded w-7 h-7 bg-text-dark'>

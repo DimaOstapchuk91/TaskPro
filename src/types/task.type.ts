@@ -8,8 +8,3 @@ export interface Task {
   created_at: string;
   updated_at: string;
 }
-
-export type TaskRequest = Omit<
-  Task,
-  'id' | 'column_id' | 'created_at' | 'updated_at'
->;

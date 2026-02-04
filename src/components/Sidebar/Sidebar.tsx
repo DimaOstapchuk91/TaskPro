@@ -7,12 +7,6 @@ import LoggOutBtn from '../btn/LoggOutBtn/LoggOutBtn';
 import NeedHelp from '../NeedHelp/NeedHelp';
 
 const Sidebar = () => {
-  // const mokedBoards = [
-  //   { id: '1', title: 'Board 1', icon: 'icon-project' },
-  //   { id: '2', title: 'Board 2', icon: 'icon-puzzle' },
-  //   { id: '3', title: 'Board 3', icon: 'icon-star' },
-  // ];
-
   return (
     <aside className='w-full flex flex-col justify-between max-w-[225px] p-3.5 h-screen bg-bg sticky top-0 md:max-w-[260px] md:p-6'>
       <div>

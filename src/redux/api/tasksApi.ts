@@ -1,4 +1,5 @@
-import { Task, TaskRequest } from '../../types/task.type';
+import { Task } from '../../types/task.type';
+import { TaskValues } from '../../utils/formValidation';
 import { rootApi } from './rootApi';
 
 export const tasksApi = rootApi.injectEndpoints({
@@ -8,7 +9,7 @@ export const tasksApi = rootApi.injectEndpoints({
       {
         boardId: number;
         columnId: number;
-        body: TaskRequest;
+        body: TaskValues;
       }
     >({
       query: ({ boardId, columnId, body }) => ({
@@ -26,12 +27,12 @@ export const tasksApi = rootApi.injectEndpoints({
         boardId: number;
         columnId: number;
         taskId: number;
-        body: TaskRequest;
+        body: TaskValues;
       }
     >({
       query: ({ boardId, columnId, taskId, body }) => ({
         url: `boards/${boardId}/columns/${columnId}/tasks/${taskId}`,
-        method: 'PUT',
+        method: 'PATCH',
         body,
       }),
       invalidatesTags: (result, error, arg) => [
