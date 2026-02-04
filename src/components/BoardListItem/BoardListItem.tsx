@@ -17,14 +17,10 @@ const BoardListItem = ({ board }: BoardListItemProps) => {
     <BoardModal onClose={onClose} mode='edit' boardId={board.id} />
   );
 
-  const [deleteBoard] = useDeleteBoardMutation();
+  const [deleteBoard, { isLoading }] = useDeleteBoardMutation();
 
   const handleDellBoard = async () => {
-    try {
-      await deleteBoard({ boardId: board.id }).unwrap();
-    } catch (error) {
-      console.log(error);
-    }
+    await deleteBoard({ boardId: board.id }).unwrap();
   };
 
   return (
@@ -56,6 +52,7 @@ const BoardListItem = ({ board }: BoardListItemProps) => {
             confirmAction={handleDellBoard}
             confirmTitle={'Delete Board?'}
             CreateModal={BoardEditModal}
+            isLoading={isLoading}
           />
         </div>
       )}

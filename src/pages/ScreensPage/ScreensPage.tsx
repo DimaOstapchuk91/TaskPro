@@ -17,7 +17,7 @@ const ScreensPage = () => {
     if (!data?.data?.columns) return [];
     return data.data.columns.map(col => ({
       ...col,
-      tasks: col.tasks.filter(task => {
+      tasks: col.tasks?.filter(task => {
         if (!filter) return true;
         return task.priority === filter;
       }),

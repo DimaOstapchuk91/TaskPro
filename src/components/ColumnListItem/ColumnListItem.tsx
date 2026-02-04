@@ -6,6 +6,7 @@ import TaskModal from '../modals/TaskModal/TaskModal';
 import Modal from '../modals/Modal';
 import { Column } from '../../types/culumn.type';
 import TaskItem from '../TaskItem/TaskItem';
+import { useDeleteColumnMutation } from '../../redux/api/columnsApi';
 
 interface ColumnListProps {
   column: Column;
@@ -14,6 +15,8 @@ interface ColumnListProps {
 
 const ColumnListItem = ({ column, boardId }: ColumnListProps) => {
   const [isAddTaskModal, setAddTaskModal] = useState<boolean>(false);
+
+  const [deleteColumn, { isLoading }] = useDeleteColumnMutation();
 
   const ColumnEditModal = ({ onClose }: { onClose: () => void }) => (
     <ColumnModal
@@ -27,7 +30,7 @@ const ColumnListItem = ({ column, boardId }: ColumnListProps) => {
   const tasks = column.tasks ?? [];
 
   const handleDellColumn = async () => {
-    console.log('Виадалення колонки');
+    await deleteColumn({ boardId: boardId, columnId: column.id }).unwrap();
   };
 
   const handleCloseTaskModal = () => {
@@ -42,6 +45,7 @@ const ColumnListItem = ({ column, boardId }: ColumnListProps) => {
         </h2>
         <div className='absolute top-1/2 -translate-y-1/2 right-5 flex gap-2 '>
           <ControlButtons
+            isLoading={isLoading}
             confirmAction={handleDellColumn}
             confirmTitle={'Delete column?'}
             CreateModal={ColumnEditModal}

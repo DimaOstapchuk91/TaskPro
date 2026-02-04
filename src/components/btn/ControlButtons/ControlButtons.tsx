@@ -9,13 +9,15 @@ interface ControlButtonsProps {
     mode: 'create' | 'edit';
   }>;
   confirmTitle: string;
-  confirmAction: () => void;
+  confirmAction: () => Promise<void>;
+  isLoading?: boolean;
 }
 
 const ControlButtons = ({
   CreateModal,
   confirmTitle,
   confirmAction,
+  isLoading = false,
 }: ControlButtonsProps) => {
   const [isOpenCreateModal, setIsOpenCreateModal] = useState<boolean>(false);
   const [isOpenConfirmModal, setIsOpenConfirmModal] = useState<boolean>(false);
@@ -26,6 +28,15 @@ const ControlButtons = ({
 
   const handleCloseConfirmModal = () => {
     setIsOpenConfirmModal(false);
+  };
+
+  const handleConfirm = async () => {
+    try {
+      await confirmAction();
+      setIsOpenConfirmModal(false);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -62,8 +73,9 @@ const ControlButtons = ({
       <Modal isOpen={isOpenConfirmModal} onClose={handleCloseConfirmModal}>
         <ConfirmModal
           title={confirmTitle}
-          action={confirmAction}
-          onClose={handleCloseConfirmModal}
+          onConfirm={handleConfirm}
+          onCancel={handleCloseConfirmModal}
+          isLoading={isLoading}
         />
       </Modal>
     </>
