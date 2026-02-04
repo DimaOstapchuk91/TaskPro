@@ -42,17 +42,12 @@ const TaskModal = ({
       day: 'numeric',
     });
 
-  const { handleSubmit, register, control, watch } = useForm<TaskValues>({
+  const { handleSubmit, register, control } = useForm<TaskValues>({
     resolver: yupResolver(orderTaskShema),
     mode: 'onSubmit',
   });
 
-  const priority = watch('priority');
-  console.log('WATCH PRIORITY:', priority);
-
   const handleTaskSubmit = async (data: TaskValues) => {
-    console.log(['test body', columnId, boardId, taskId, data]);
-
     try {
       if (mode === 'create') {
         await createTask({

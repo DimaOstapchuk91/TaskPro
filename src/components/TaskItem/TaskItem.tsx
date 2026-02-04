@@ -3,6 +3,7 @@ import ControlButtons from '../btn/ControlButtons/ControlButtons';
 import TaskModal from '../modals/TaskModal/TaskModal';
 import DropdownProgres from '../DropdownProgres/DropdownProgres';
 import { Task } from '../../types/task.type';
+import { useDeleteTaskMutation } from '../../redux/api/tasksApi';
 
 interface ColumnItemProps {
   taskData: Task;
@@ -11,6 +12,8 @@ interface ColumnItemProps {
 }
 
 const TaskItem = ({ taskData, boardId, columnId }: ColumnItemProps) => {
+  const [deleteTask, { isLoading }] = useDeleteTaskMutation();
+
   const taskEditModal = ({ onClose }: { onClose: () => void }) => (
     <TaskModal
       onClose={onClose}
@@ -22,8 +25,13 @@ const TaskItem = ({ taskData, boardId, columnId }: ColumnItemProps) => {
   );
 
   const handleDellTask = async () => {
-    console.log('Видалення завдання');
+    await deleteTask({
+      boardId: boardId,
+      columnId: columnId,
+      taskId: taskData.id,
+    }).unwrap();
   };
+
   return (
     <div
       className={clsx(
@@ -33,7 +41,7 @@ const TaskItem = ({ taskData, boardId, columnId }: ColumnItemProps) => {
           'border-label-pink': taskData.priority === 'Medium',
           'border-label-violet': taskData.priority === 'Low',
           'border-label-gray': taskData.priority === 'Without',
-        }
+        },
       )}
     >
       <h3 className='text-sm text-text-theme mb-2 font-semibold -tracking-[0.28px]'>
@@ -75,6 +83,7 @@ const TaskItem = ({ taskData, boardId, columnId }: ColumnItemProps) => {
             confirmTitle={'Delete Task?'}
             confirmAction={handleDellTask}
             CreateModal={taskEditModal}
+            isLoading={isLoading}
           />
         </div>
       </div>
