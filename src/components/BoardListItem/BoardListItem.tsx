@@ -24,7 +24,7 @@ const BoardListItem = ({ board }: BoardListItemProps) => {
   };
 
   return (
-    <li className='relative'>
+    <>
       <NavLink
         className={({ isActive }) =>
           `group flex items-center gap-1 py-5 px-3.5 -mx-3.5 hover:bg-bg-dark transition-all duration-300 md:gap-2 md:-mx-6  ${
@@ -56,7 +56,7 @@ const BoardListItem = ({ board }: BoardListItemProps) => {
           />
         </div>
       )}
-    </li>
+    </>
   );
 };
 export default BoardListItem;

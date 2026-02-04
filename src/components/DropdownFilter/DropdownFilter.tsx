@@ -55,6 +55,7 @@ const DropdownFilter = ({ onSelect }: DropdownFilterProps) => {
           <button
             className='text-text-theme/50 !text-xs -tracking-[0.24px] underline hover:text-hover'
             type='button'
+            onClick={() => handleClickFilter('')}
           >
             Show all
           </button>
@@ -68,7 +69,7 @@ const DropdownFilter = ({ onSelect }: DropdownFilterProps) => {
               <span
                 className={clsx(
                   'block w-3.5 h-3.5 rounded-full transition-all duration-300',
-                  getColorClass(item)
+                  getColorClass(item),
                 )}
               />
               {item}

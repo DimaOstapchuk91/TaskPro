@@ -7,6 +7,7 @@ import Modal from '../modals/Modal';
 import { Column } from '../../types/culumn.type';
 import TaskItem from '../TaskItem/TaskItem';
 import { useDeleteColumnMutation } from '../../redux/api/columnsApi';
+import { AnimatePresence, motion } from 'framer-motion';
 
 interface ColumnListProps {
   column: Column;
@@ -53,14 +54,26 @@ const ColumnListItem = ({ column, boardId }: ColumnListProps) => {
         </div>
       </div>
       <ul className=' flex  flex-col pr-2  -mr-4 gap-2 mb-3.5 h-[calc(100vh-314px)]  overflow-y-auto overflow-hidden  scrollbar-thumb-bg scrollbar-track-text-theme/10 scrollbar-thumb-rounded-full scrollbar-w-2 scrollbar scrollbar-track-rounded-full'>
-        {tasks.map(item => (
-          <TaskItem
-            key={item.id}
-            taskData={item}
-            boardId={boardId}
-            columnId={column.id}
-          />
-        ))}
+        <AnimatePresence>
+          {tasks.map(item => (
+            <motion.li
+              key={item.id}
+              layout
+              exit={{
+                opacity: 0,
+                scale: 0.6,
+                y: 20,
+              }}
+              transition={{ duration: 0.25 }}
+            >
+              <TaskItem
+                taskData={item}
+                boardId={boardId}
+                columnId={column.id}
+              />
+            </motion.li>
+          ))}
+        </AnimatePresence>
       </ul>
       <button
         className='p-3.5 flex items-center gap-2 justify-center w-full !text-sm font-bold -tracking-[0.26px] bg-brand rounded-lg  text-text-dark hover:bg-hover'
