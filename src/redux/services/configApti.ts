@@ -22,7 +22,8 @@ interface RefreshResponse {
 const mutex = new Mutex();
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: 'http://localhost:3000/',
+  // baseUrl: 'http://localhost:3000/',
+  baseUrl: 'https://taskpro-backend-v77j.onrender.com',
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).user.accessToken;
     if (token) {
@@ -49,7 +50,7 @@ export const baseQueryWithReauth: BaseQueryFn<
         const refreshResult = await baseQuery(
           { url: 'auth/refresh', method: 'POST' },
           api,
-          extraOptions
+          extraOptions,
         );
 
         if (
