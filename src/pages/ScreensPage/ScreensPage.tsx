@@ -7,7 +7,13 @@ import ColumnList from '../../components/ColumnList/ColumnList';
 
 const ScreensPage = () => {
   const { boardId } = useParams<string>();
-  const { data, isLoading, isError } = useGetBoardByIdQuery(Number(boardId));
+
+  const numericBoardId =
+    boardId && !isNaN(Number(boardId)) ? Number(boardId) : null;
+
+  const { data, isLoading, isError } = useGetBoardByIdQuery(numericBoardId!, {
+    skip: numericBoardId === null,
+  });
 
   const [filter, setFilter] = useState<string | null>(null);
 
