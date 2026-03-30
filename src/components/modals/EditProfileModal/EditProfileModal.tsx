@@ -1,12 +1,12 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
-import { User } from '../../../redux/api/authApi';
 import {
   EditUserValues,
   orderEditUserSchema,
 } from '../../../utils/formValidation';
 import sprite from '../../../assets/sprite.svg';
 import { useState } from 'react';
+import { User } from '../../../types/user.type';
 
 interface EditModalProps {
   dataUser?: User;

@@ -16,7 +16,7 @@ import { IconType } from '../../../types/boards.type';
 interface BoardModalProps {
   onClose: () => void;
   mode: 'create' | 'edit';
-  boardId: number;
+  boardId?: number;
 }
 
 const BoardModal = ({ onClose, mode, boardId }: BoardModalProps) => {
@@ -43,7 +43,7 @@ const BoardModal = ({ onClose, mode, boardId }: BoardModalProps) => {
     formState: { errors },
   } = useForm<BoardFormValues>({
     resolver: yupResolver(
-      orderBoardSchema
+      orderBoardSchema,
     ) as unknown as Resolver<BoardFormValues>,
     mode: 'onSubmit',
   });
