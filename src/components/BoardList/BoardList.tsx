@@ -11,7 +11,6 @@ const BoardList = () => {
   const { data, isLoading } = useGetAllBoardsQuery(undefined, {
     skip: !isLoggedIn,
   });
-  console.log(data);
 
   return (
     <ul>

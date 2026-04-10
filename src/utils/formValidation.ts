@@ -6,12 +6,12 @@ const nameValid = Yup.string()
 
 const emailValid = Yup.string().matches(
   /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,
-  'Invalid email format'
+  'Invalid email format',
 );
 
 const avatarValid = Yup.string().matches(
   /^https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|webp)$/,
-  'Avatar must be a valid image URL'
+  'Avatar must be a valid image URL',
 );
 
 // const themeValid = Yup.mixed<'dark' | 'light' | 'violet'>()
@@ -47,10 +47,13 @@ export const orderLoginSchema = Yup.object({
 });
 
 export const orderEditUserSchema = Yup.object({
-  name: nameValid.nullable(),
-  email: emailValid.nullable(),
-  avatar_url: avatarValid.nullable(),
-  password: passwordValid.nullable(),
+  name: nameValid.notRequired().nullable(),
+  email: emailValid.notRequired().nullable(),
+  avatar_url: avatarValid.notRequired().nullable(),
+  password: passwordValid
+    .transform(value => (value === '' ? undefined : value))
+    .notRequired()
+    .nullable(),
 });
 
 export const orderBoardSchema = Yup.object({
@@ -68,7 +71,7 @@ export const orderBoardSchema = Yup.object({
         'icon-lightning',
         'icon-loading',
       ],
-      'Invalid icon selection'
+      'Invalid icon selection',
     ),
   boardBg: Yup.string().nullable(),
 });

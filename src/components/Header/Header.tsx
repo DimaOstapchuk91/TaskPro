@@ -36,22 +36,32 @@ const Header = () => {
             type='button'
             onClick={() => setIsOpenEditModal(true)}
           >
-            <svg
-              width='24'
-              height='24'
-              className='stroke-text-dark fill-text-dark'
-            >
-              <use href={`${sprite}#icon-user`}></use>
-            </svg>
-            <span className='absolute -bottom-1 bg-brand w-3 h-3 rounded-[4px] flex justify-center items-center'>
-              <svg
-                width='8'
-                height='8'
-                className='stroke-bg-light fill-transparent'
-              >
-                <use href={`${sprite}#icon-plus`}></use>
-              </svg>
-            </span>
+            {data?.data.avatar_url ? (
+              <img
+                src={data?.data.avatar_url}
+                alt='avatar preview'
+                className='object-cover w-full h-full rounded-lg'
+              />
+            ) : (
+              <div>
+                <svg
+                  width='24'
+                  height='24'
+                  className='stroke-text-dark fill-text-dark'
+                >
+                  <use href={`${sprite}#icon-user`}></use>
+                </svg>
+                <span className='absolute -bottom-1 bg-brand w-3 h-3 rounded-[4px] flex justify-center items-center'>
+                  <svg
+                    width='8'
+                    height='8'
+                    className='stroke-bg-light fill-transparent'
+                  >
+                    <use href={`${sprite}#icon-plus`}></use>
+                  </svg>
+                </span>
+              </div>
+            )}
           </button>
           <Modal isOpen={isOpenEditModal} onClose={handleCloseEditModal}>
             <EditProfileModal

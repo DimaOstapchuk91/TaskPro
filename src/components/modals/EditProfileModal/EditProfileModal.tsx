@@ -7,6 +7,7 @@ import {
 import sprite from '../../../assets/sprite.svg';
 import { useState } from 'react';
 import { User } from '../../../types/user.type';
+import { useUpdateUserMutation } from '../../../redux/api/authApi';
 
 interface EditModalProps {
   dataUser?: User;
@@ -14,6 +15,7 @@ interface EditModalProps {
 }
 
 const EditProfileModal = ({ dataUser, onClose }: EditModalProps) => {
+  const [updateUser, { isLoading }] = useUpdateUserMutation();
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
 
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -41,17 +43,25 @@ const EditProfileModal = ({ dataUser, onClose }: EditModalProps) => {
 
   console.log('dataUser', dataUser);
 
-  const handleEditProfile = (data: EditUserValues): void => {
+  const handleEditProfile = async (data: EditUserValues) => {
     const formData = new FormData();
-    formData.append('name', data.name ?? '');
-    formData.append('email', data.email ?? '');
+
+    if (data.name) formData.append('name', data.name);
+    if (data.email) formData.append('email', data.email);
     if (data.password) formData.append('password', data.password);
-    if (selectedFile) formData.append('avatar', selectedFile);
 
-    console.log('FormData', Object.fromEntries(formData.entries()));
+    if (selectedFile) {
+      formData.append('avatar', selectedFile);
+    }
 
-    onClose();
+    try {
+      await updateUser(formData).unwrap();
+      onClose();
+    } catch (err) {
+      console.error('Помилка оновлення профілю', err);
+    }
   };
+
   return (
     <div className='w-full p-8 bg-header max-w-[335px]  rounded-lg md:max-w-[350px]'>
       <h2 className='text-text-theme w-full text-lg font-medium -tracking-[0.36px] mb-6'>
@@ -160,6 +170,7 @@ const EditProfileModal = ({ dataUser, onClose }: EditModalProps) => {
         <button
           className='bg-brand !text-sm font-medium w-full rounded-lg p-3.5 text-text-dark hover:bg-hover'
           type='submit'
+          disabled={isLoading}
         >
           Send
         </button>
