@@ -110,6 +110,7 @@ const EditProfileModal = ({ dataUser, onClose }: EditModalProps) => {
               <input
                 className=' px-4.5 py-3.5 text-sm text-text-theme -tracking-[0.28px] border border-brand/60 rounded-lg w-full outline-none hover:border-hover hover:shadow-[0_0_8px_var(--color-brand)] focus:border-hover focus:shadow-[0_0_8px_var(--color-brand)] transition-all duration-300'
                 type='text'
+                autoComplete='off'
                 {...register('name')}
               />
             </label>
@@ -119,6 +120,7 @@ const EditProfileModal = ({ dataUser, onClose }: EditModalProps) => {
               <input
                 className=' px-4.5 py-3.5 text-sm text-text-theme -tracking-[0.28px] border border-brand/60 rounded-lg w-full outline-none hover:border-hover hover:shadow-[0_0_8px_var(--color-brand)] focus:border-hover focus:shadow-[0_0_8px_var(--color-brand)] transition-all duration-300'
                 type='email'
+                autoComplete='off'
                 {...register('email')}
               />
             </label>
@@ -128,6 +130,7 @@ const EditProfileModal = ({ dataUser, onClose }: EditModalProps) => {
               <input
                 className=' px-4.5 py-3.5 text-sm text-text-theme -tracking-[0.28px] border border-brand/60 rounded-lg w-full outline-none hover:border-hover hover:shadow-[0_0_8px_var(--color-brand)] focus:border-hover focus:shadow-[0_0_8px_var(--color-brand)] transition-all duration-300'
                 type={passwordVisible ? 'text' : 'password'}
+                autoComplete='off'
                 {...register('password')}
               />
               {errors.password && (

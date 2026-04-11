@@ -21,8 +21,8 @@ interface BoardModalProps {
 
 const BoardModal = ({ onClose, mode, boardId }: BoardModalProps) => {
   const { data, isLoading } = useGetResourcesQuery();
-  const [createBoard] = useCreateBoardMutation();
-  const [editBoard] = useEditBoardMutation();
+  const [createBoard, { isLoading: isCreating }] = useCreateBoardMutation();
+  const [editBoard, { isLoading: isEditing }] = useEditBoardMutation();
   const title = mode === 'create' ? 'New board' : 'Edit board';
   const buttonLabel = mode === 'create' ? 'Create' : 'Edit';
 
@@ -168,7 +168,10 @@ const BoardModal = ({ onClose, mode, boardId }: BoardModalProps) => {
                       />
                       <img
                         className='peer-checked:ring-2 peer-checked:shadow-[0_0_8px_var(--color-brand)] peer-checked:scale-110  group-hover:ring-2 group-hover:scale-110 ring-brand rounded-lg transition-all duration-300'
+                        width='28'
+                        height='28'
                         src={icons.thumb?.url}
+                        alt={icons.name}
                       />
                     </label>
                   </li>
@@ -180,19 +183,28 @@ const BoardModal = ({ onClose, mode, boardId }: BoardModalProps) => {
         <button
           className='group w-full p-2.5 bg-brand rounded-lg flex items-center justify-center gap-2'
           type='submit'
+          disabled={isLoading || isCreating || isEditing}
         >
-          <span className='flex justify-center items-center rounded w-7 h-7 bg-text-theme group-hover:bg-hover transition duration-300'>
-            <svg
-              width='14'
-              height='14'
-              className='stroke-text-dark fill-transparent'
-            >
-              <use href={`${sprite}#icon-plus`}></use>
-            </svg>
-          </span>
-          <p className='text-sm text-text-theme group-hover:text-hover font-medium -tacking-[0.28px] transition duration-300'>
-            {buttonLabel}
-          </p>
+          {isLoading || isCreating || isEditing ? (
+            <p className=' text-text-theme  font-medium -tacking-[0.28px] h-7 flex items-center'>
+              Loading...
+            </p>
+          ) : (
+            <>
+              <span className='flex justify-center items-center rounded w-7 h-7 bg-text-theme group-hover:bg-hover transition duration-300'>
+                <svg
+                  width='14'
+                  height='14'
+                  className='stroke-text-dark fill-transparent'
+                >
+                  <use href={`${sprite}#icon-plus`}></use>
+                </svg>
+              </span>
+              <p className='text-sm text-text-theme group-hover:text-hover font-medium -tacking-[0.28px] transition duration-300'>
+                {buttonLabel}
+              </p>
+            </>
+          )}
         </button>
       </form>
     </div>

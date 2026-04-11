@@ -41,7 +41,10 @@ const ColumnListItem = ({ column, boardId }: ColumnListProps) => {
   return (
     <div className=' w-[335px]  snap-center flex flex-col'>
       <div className='relative  px-5 py-4.5 mb-3.5 bg-bg w-full rounded-lg '>
-        <h2 className='text-sm font-medium -tracking-[0.28px]'>
+        <h2
+          className='text-sm w-3/4 font-medium truncate hover:whitespace-normal -tracking-[0.28px]'
+          title={column.title}
+        >
           {column.title}
         </h2>
         <div className='absolute top-1/2 -translate-y-1/2 right-5 flex gap-2 '>

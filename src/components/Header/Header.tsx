@@ -28,7 +28,7 @@ const Header = () => {
       <div className='w-full flex justify-end gap-3.5'>
         <DropdownTheme />
         <div className='flex items-center gap-2'>
-          <p className='text-sm text-text-theme font-medium -tacking-[0.28px]'>
+          <p className='text-sm text-text-theme font-medium -tracking-[0.28px]'>
             {data ? data.data.name : 'User Name'}
           </p>
           <button

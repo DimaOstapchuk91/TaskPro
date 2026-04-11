@@ -42,7 +42,10 @@ const BoardListItem = ({ board }: BoardListItemProps) => {
         >
           <use href={`${sprite}#${board.icon}`} />
         </svg>
-        <p className='opacity-40 text-sm font-medium -tracking-[0.28px] group-[.active]:opacity-100'>
+        <p
+          className='opacity-40 w-[55%] text-sm font-medium truncate -tracking-[0.28px] group-[.active]:opacity-100'
+          title={board.title}
+        >
           {board.title}
         </p>
       </NavLink>

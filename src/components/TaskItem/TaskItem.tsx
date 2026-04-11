@@ -4,6 +4,7 @@ import TaskModal from '../modals/TaskModal/TaskModal';
 import DropdownProgres from '../DropdownProgres/DropdownProgres';
 import { Task } from '../../types/task.type';
 import { useDeleteTaskMutation } from '../../redux/api/tasksApi';
+import { formatDate } from '../../utils/formatDate';
 
 interface ColumnItemProps {
   taskData: Task;
@@ -23,6 +24,8 @@ const TaskItem = ({ taskData, boardId, columnId }: ColumnItemProps) => {
       taskId={taskData.id}
     />
   );
+
+  console.log(taskData.deadline);
 
   const handleDellTask = async () => {
     await deleteTask({
@@ -44,10 +47,16 @@ const TaskItem = ({ taskData, boardId, columnId }: ColumnItemProps) => {
         },
       )}
     >
-      <h3 className='text-sm text-text-theme mb-2 font-semibold -tracking-[0.28px]'>
+      <h3
+        className='text-sm text-text-theme break-words truncate whitespace-normal mb-2 font-semibold line-clamp-2 -tracking-[0.28px]'
+        title={taskData.title}
+      >
         {taskData.title}
       </h3>
-      <p className='text-xs max-w-[290px] h-8 mb-3.5 text-text-theme/50 leading-4 -tracking-[0.24px] overflow-hidden text-ellipsis  line-clamp-2 '>
+      <p
+        className='text-xs max-w-[290px] h-8 mb-3.5 text-text-theme/50 leading-4 -tracking-[0.24px] break-words whitespace-normal overflow-hidden text-ellipsis  line-clamp-2'
+        title={taskData.description}
+      >
         {taskData.description}
       </p>
       <div className='flex justify-between items-end pt-3.5 border-t border-text-theme/10 relative'>
@@ -73,7 +82,7 @@ const TaskItem = ({ taskData, boardId, columnId }: ColumnItemProps) => {
               Deadline
             </p>
             <p className='text-text-theme text-[10px] -tracking-[0.2px]'>
-              {taskData.deadline}
+              {formatDate(taskData.deadline)}
             </p>
           </div>
         </div>

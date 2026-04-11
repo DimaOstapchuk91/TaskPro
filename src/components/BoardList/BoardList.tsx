@@ -13,7 +13,7 @@ const BoardList = () => {
   });
 
   return (
-    <ul>
+    <ul className=' w-[calc(100%+12px)] h-[320px] pl-6 pr-7 -mr-4 overflow-y-auto scrollbar-thumb-text-theme/10 scrollbar-track-brand/10 scrollbar-thumb-rounded-full scrollbar-w-2 scrollbar scrollbar-track-rounded-full'>
       {isLoading ? (
         <p>Loading...</p>
       ) : (
